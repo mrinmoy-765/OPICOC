@@ -5,45 +5,44 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { Link } from "react-router-dom";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "Profile", path: "/profile" },
+  { name: "Currency", path: "/currency" },
+  { name: "Shop", path: "/shop" },
+  { name: "About", path: "/about" },
+  { name: "Contact Us", path: "/contact" },
+  { name: "Admin Login", path: "/admin-login" },
+];
 
 const NavigationDrawer = ({ open, onClose }) => {
-  const pathMap = {
-    Home: "/",
-    Profile: "/profile",
-    Currency: "/currency",
-    Shop: "/shop",
-    About: "/about",
-    "Contact Us": "/contact",
-    "Admin Login": "/admin-login",
-  };
+  // lg = desktop, md/sm = mobile/tablet
+  const isLarge = useMediaQuery("(min-width: 1024px)");
 
-  const items = Object.keys(pathMap);
+  // anchor changes based on device width
+  const anchor = isLarge ? "left" : "top";
 
   return (
     <Drawer
+      anchor={anchor}
       open={open}
       onClose={onClose}
       PaperProps={{
-        sx: {
-          backgroundColor: "black",
-          color: "white",
-          width: 260,
-        },
+        sx: { backgroundColor: "black", width: "260px" },
       }}
     >
-      <div className="p-4" onClick={onClose}>
+      <div className="p-4 text-white">
         <List>
-          {items.map((text) => (
-            <ListItem key={text} disablePadding>
-              {/* Wrap with Link */}
-              <Link to={pathMap[text]} className="w-full">
-                <ListItemButton>
-                  <ListItemText
-                    primary={text}
-                    className="border-b border-gray-600"
-                  />
-                </ListItemButton>
-              </Link>
+          {navLinks.map((item) => (
+            <ListItem key={item.name} disablePadding>
+              <ListItemButton component={Link} to={item.path} onClick={onClose}>
+                <ListItemText
+                  primary={item.name}
+                  className="text-white  border-b border-white/50 hover:bg-white/20 "
+                />
+              </ListItemButton>
             </ListItem>
           ))}
         </List>
