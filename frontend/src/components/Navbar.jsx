@@ -1,15 +1,29 @@
 import React from "react";
+import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Legend from "../assets/Legend.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaCaretDown } from "react-icons/fa";
 import { BsCurrencyDollar } from "react-icons/bs";
+import NavigationDrawer from "./Drawer";
 
 const Navbar = () => {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <div className="navbar bg-[#F5B400] shadow-sm">
       <div className="navbar-start">
-        <GiHamburgerMenu className="text-3xl ml-3" />
+        {/* Hamburger */}
+        <GiHamburgerMenu
+          className="text-3xl ml-3 cursor-pointer"
+          onClick={() => setDrawerOpen(true)}
+        />
+
+        {/* Drawer Component */}
+        <NavigationDrawer
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+        />
         <img src={Legend} alt="" className="w-[50px] h-[50px] ml-7" />
         <p className="font-medium font-clash text-2xl text-white ml-1.5">
           Opicoc
