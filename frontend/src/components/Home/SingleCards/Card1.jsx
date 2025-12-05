@@ -20,7 +20,7 @@ const Card1 = () => {
       {/* Card Layout */}
       <div className="flex flex-col lg:flex-row gap-10 justify-center items-center">
         {/* Image */}
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <img
             src={Product_Image}
             alt=""
