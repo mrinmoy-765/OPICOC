@@ -36,11 +36,15 @@ const NavigationDrawer = ({ open, onClose }) => {
       <div className="p-4 text-white">
         <List>
           {navLinks.map((item) => (
-            <ListItem key={item.name} disablePadding>
+            <ListItem
+              key={item.name}
+              disablePadding
+              className="hover:bg-white/20 hover:rounded"
+            >
               <ListItemButton component={Link} to={item.path} onClick={onClose}>
                 <ListItemText
                   primary={item.name}
-                  className="text-white  border-b border-white/50 hover:bg-white/20 "
+                  className="text-white border-b border-white/50 hover:translate-x-3 transition duration-300 ease-in-out cursor-pointer"
                 />
               </ListItemButton>
             </ListItem>
