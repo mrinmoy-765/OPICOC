@@ -62,7 +62,7 @@ const TownHalls = () => {
         </div>
       </div>
       {/* show all button */}
-      <div className="w-full flex items-center justify-center py-7">
+      <div className="w-full flex items-center justify-center lg:pt-7 lg:pb-14 pb-9">
         <button className="group w-full lg:w-1/6 md:w-2/6  bg-[#F5B400] py-3 text-black font-semibold rounded-lg hover:bg-yellow-600 transition ">
           <span className="inline-block group-hover:translate-x-2 transition duration-300 ease-in-out cursor-pointer">
             Show All
