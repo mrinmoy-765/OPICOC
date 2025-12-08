@@ -5,6 +5,7 @@ import MultipleCards from "../components/Home/MultipleCards";
 import SecondBanner from "../components/Home/SecondBanner";
 import TownHalls from "../components/Home/TownHalls";
 import VideoSection from "../components/Home/VideoSection";
+import InfoSection from "../components/Home/InfoSection";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <SecondBanner></SecondBanner>
       <TownHalls></TownHalls>
       <VideoSection></VideoSection>
+      <InfoSection></InfoSection>
     </>
   );
 };
