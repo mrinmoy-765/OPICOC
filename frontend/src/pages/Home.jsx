@@ -5,7 +5,7 @@ import MultipleCards from "../components/Home/MultipleCards";
 import SecondBanner from "../components/Home/SecondBanner";
 import TownHalls from "../components/Home/TownHalls";
 import VideoSection from "../components/Home/VideoSection";
-import InfoSection from "../components/Home/InfoSection";
+import OwnerBanner from "../components/Home/OwnerBanner";
 import ReviewSection from "../components/Home/ReviewSection";
 
 const Home = () => {
@@ -17,7 +17,7 @@ const Home = () => {
       <SecondBanner></SecondBanner>
       <TownHalls></TownHalls>
       <VideoSection></VideoSection>
-      <InfoSection></InfoSection>
+      <OwnerBanner></OwnerBanner>
       <ReviewSection></ReviewSection>
     </>
   );
