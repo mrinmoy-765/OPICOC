@@ -6,6 +6,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { FaCaretDown } from "react-icons/fa";
 import { BsCurrencyDollar } from "react-icons/bs";
 import NavigationDrawer from "./Drawer";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -145,9 +146,12 @@ const Navbar = () => {
           </div>
 
           {/* login / user */}
-          <button className="btn btn-neutral btn-outline ml-2 mr-0 btn-sm lg:btn-md lg:ml-5 lg:mr-3">
+          <Link
+            to="/login"
+            className="btn btn-neutral btn-outline ml-2 mr-0 btn-sm lg:btn-md lg:ml-5 lg:mr-3"
+          >
             Login
-          </button>
+          </Link>
         </div>
       </div>
     </div>
