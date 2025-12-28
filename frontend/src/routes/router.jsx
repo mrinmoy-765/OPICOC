@@ -2,9 +2,10 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Registration from "../pages/Registration";
-import AdminLogin from "../pages/AdminLogin";
+import Login from "../pages/Auth/Login";
+import Registration from "../pages/Auth/Registration";
+import AdminLogin from "../pages/Auth/AdminLogin";
+import VerifyOtp from "../pages/Auth/VerifyOtp";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/admin-login",
     element: <AdminLogin></AdminLogin>,
+  },
+  {
+    path: "/verify-otp",
+    element: <VerifyOtp></VerifyOtp>,
   },
 ]);
 

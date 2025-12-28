@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import logo from "../assets/ClashOfClansLogo.png";
-import ElectroFire from "../assets/Electrofire_reg.png";
-import Breaker1 from "../assets/Breaker_3.png";
-import Breaker2 from "../assets/Breaker_8.png";
-import Legend from "../assets/Legend.png";
+import logo from "../../assets/ClashOfClansLogo.png";
+import ElectroFire from "../../assets/Electrofire_reg.png";
+import Breaker1 from "../../assets/Breaker_3.png";
+import Breaker2 from "../../assets/Breaker_8.png";
+import Legend from "../../assets/Legend.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Registration = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -19,13 +22,25 @@ const Registration = () => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data) => {
-    setLoading(true);
-    console.log("Registration Data:", data);
+    try {
+      setLoading(true);
 
-    // Simulate Registration delay
-    setTimeout(() => {
+      console.log("Registration Data", data);
+
+      await axios.post("http://localhost:5000/api/register", {
+        FirstName: data.firstname,
+        LastName: data.lastname,
+        email: data.email,
+        password: data.password,
+      });
+
+      // redirect to OTP page
+      navigate(`/verify-otp?email=${data.email}`);
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration failed");
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (

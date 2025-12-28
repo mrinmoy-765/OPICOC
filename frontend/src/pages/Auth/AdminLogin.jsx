@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import logo from "../assets/ClashOfClansLogo.png";
-import ElectroFire from "../assets/ElectroFire.png";
-import Villager1 from "../assets/Villager1.png";
-import Villager2 from "../assets/Villager2.png";
-import Legend from "../assets/Legend.png";
+import logo from "../../assets/ClashOfClansLogo.png";
+import ElectroFire from "../../assets/Electrofire_admin.png";
+import Breaker1 from "../../assets/Breaker_1.png";
+import Breaker2 from "../../assets/Breaker_2.png";
+import Legend from "../../assets/Legend.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const AdminLogin = () => {
   const {
     register,
     handleSubmit,
@@ -53,7 +53,7 @@ const Login = () => {
             <h1 className="font-clash text-2xl">Opicoc</h1>
           </div>
 
-          <p className="text-xl font-semibold">Get Started</p>
+          <p className="text-xl font-semibold"> Admin log in</p>
           <p className="text-sm text-gray-600 mb-5">
             Welcome! We're thrilled to have you
           </p>
@@ -137,11 +137,11 @@ const Login = () => {
       </div>
       {/* Bottom Village Images */}
       <div className="flex justify-between items-center mt-6">
-        <img src={Villager1} alt="" className="w-24 md:w-32" />
-        <img src={Villager2} alt="" className="w-24 md:w-32" />
+        <img src={Breaker1} alt="" className="w-24 md:w-32" />
+        <img src={Breaker2} alt="" className="w-24 md:w-32" />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminLogin;
