@@ -110,9 +110,11 @@ const Login = () => {
               )}
             </div>
 
-            <p className="text-end text-[#F5B400] text-sm cursor-pointer">
-              Forgot password?
-            </p>
+            <Link to="/reset-password">
+              <p className="text-end text-[#F5B400] text-sm cursor-pointer mb-1.5">
+                Forgot password?
+              </p>
+            </Link>
 
             {/* Submit Button */}
             <button
