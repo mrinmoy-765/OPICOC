@@ -62,7 +62,7 @@ export const verifyEmailOtp = async (req, res) => {
     return res.json({ success: false, message: "OTP expired or not found" });
   }
 
-  //  Max attempts
+  // 🚫 Max attempts
   if (otpRecord.attempts >= 5) {
     await OtpModel.deleteOne({ email });
     return res.json({
@@ -71,7 +71,7 @@ export const verifyEmailOtp = async (req, res) => {
     });
   }
 
-  //  Wrong OTP
+  // ❌ Wrong OTP
   if (otpRecord.otp !== otp) {
     otpRecord.attempts += 1;
     await otpRecord.save();
@@ -82,7 +82,7 @@ export const verifyEmailOtp = async (req, res) => {
     });
   }
 
-  //  OTP correct → create user
+  // ✅ OTP correct → create user
   await userModel.create({
     email,
     FirstName: otpRecord.userData.FirstName,
@@ -92,16 +92,14 @@ export const verifyEmailOtp = async (req, res) => {
 
   await OtpModel.deleteOne({ email });
 
-  //create token
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: "7d",
-  });
-
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+  await transporter.sendMail({
+    from: process.env.SENDER_EMAIL,
+    to: email,
+    subject: "Welcome to Opicoc",
+    text: `Congratulations ${otpRecord.userData.FirstName}. Your account has been registered.
+             Explore the amazing bases and enhance your gaming experiences with us.
+             Stay Connected.
+                        ~ Opicoc`,
   });
 
   res.json({
@@ -145,7 +143,7 @@ export const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.json({ success: true });
+    return res.json({ success: true, message: "Login Successful" });
   } catch (error) {
     res.json({ sucess: false, message: error.message });
   }
@@ -187,7 +185,7 @@ export const sendResetOTP = async (req, res) => {
     const user = await userModel.findOne({ email });
 
     if (!user) {
-      return res.json({ success: false, message: "User Not Found" });
+      return res.json({ success: false, message: "User Email Not Found" });
     }
 
     const otp = String(Math.floor(100000 + Math.random() * 900000));

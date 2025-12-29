@@ -12,7 +12,12 @@ connectDB();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true }));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // your frontend URL
+    credentials: true,
+  })
+);
 
 //API Endpoints
 app.get("/", (req, res) => res.send("API Working"));

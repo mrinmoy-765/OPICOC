@@ -7,6 +7,7 @@ import Registration from "../pages/Auth/Registration";
 import AdminLogin from "../pages/Auth/AdminLogin";
 import VerifyOtp from "../pages/Auth/VerifyOtp";
 import ResetPassword from "../pages/Auth/ResetPassword";
+import Profile from "../components/User/Profile";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/profile",
+        element: <Profile></Profile>,
       },
     ],
   },

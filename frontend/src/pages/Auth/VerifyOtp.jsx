@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
 
 const OTP_EXPIRY_TIME = 5 * 60; // 5 minutes in seconds
 
@@ -12,6 +13,8 @@ const VerifyOtp = () => {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(OTP_EXPIRY_TIME);
+
+  const AxiosPublic = useAxiosPublic();
 
   //  Countdown Timer
   useEffect(() => {
@@ -38,22 +41,26 @@ const VerifyOtp = () => {
     e.preventDefault();
 
     if (timeLeft <= 0) {
-      alert("OTP expired. Please request a new one.");
+      toast.warning("Please try again");
       return;
     }
 
     try {
       setLoading(true);
 
-      await axios.post("http://localhost:5000/api/verify-otp", {
+      const res = await AxiosPublic.post("/auth/verify-otp", {
         email,
         otp,
       });
 
-      alert("Email verified successfully!");
+      if (!res.data.success) {
+        toast.error(res.data.message);
+        return;
+      }
+      toast.success(res.data.message);
       navigate("/login");
     } catch (error) {
-      alert(error.response?.data?.message || "Invalid OTP");
+      alert(error.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }

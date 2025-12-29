@@ -8,10 +8,12 @@ import Legend from "../../assets/Legend.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const navigate = useNavigate();
+  const AxiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -25,19 +27,26 @@ const Registration = () => {
     try {
       setLoading(true);
 
-      console.log("Registration Data", data);
-
-      await axios.post("http://localhost:5000/api/register", {
+      const res = await AxiosPublic.post("/auth/register", {
         FirstName: data.firstname,
         LastName: data.lastname,
         email: data.email,
         password: data.password,
       });
 
-      // redirect to OTP page
+      // Backend responded ( an error )
+      if (!res.data.success) {
+        toast.error(res.data.message);
+        return;
+      }
+
+      //  Success
+      toast.success(res.data.message);
+
       navigate(`/verify-otp?email=${data.email}`);
     } catch (error) {
-      alert(error.response?.data?.message || "Registration failed");
+      //  Axios error (server crash / network)
+      toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -100,7 +109,7 @@ const Registration = () => {
             {/* Last Name */}
             <div>
               <label className="block font-semibold mb-1 text-sm">
-                Lats Name
+                Last Name
               </label>
               <input
                 type="lastname"
@@ -113,7 +122,7 @@ const Registration = () => {
                   },
                 })}
               />
-              {errors.email && (
+              {errors.lastname && (
                 <p className="text-red-500 text-xs">
                   {errors.lastname.message}
                 </p>

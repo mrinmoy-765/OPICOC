@@ -7,6 +7,9 @@ import Villager2 from "../../assets/Villager2.png";
 import Legend from "../../assets/Legend.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -18,14 +21,40 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const AxiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     setLoading(true);
-    console.log("Login Data:", data);
+    // console.log("Login Data:", data);
+    try {
+      setLoading(true);
 
-    // Simulate login delay
-    setTimeout(() => {
+      const res = await AxiosPublic.post(
+        "/auth/login",
+        {
+          email: data.email,
+          password: data.password,
+        },
+        { withCredentials: true }
+      );
+
+      // Backend responded ( an error )
+      if (!res.data.success) {
+        toast.error(res.data.message);
+        return;
+      }
+
+      //  Success
+      if (toast.success(res.data.message)) {
+        navigate("/profile");
+      }
+    } catch (error) {
+      //  Axios error (server crash / network)
+      toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (

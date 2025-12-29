@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const OTP_TIME = 5 * 60; // 5 minutes
 
@@ -13,7 +15,9 @@ const ResetPassword = () => {
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
 
-  // 🔥 Countdown Timer
+  const AxiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+  //Countdown Timer
   useEffect(() => {
     if (timeLeft <= 0) return;
 
@@ -36,12 +40,17 @@ const ResetPassword = () => {
 
     try {
       setLoading(true);
-      await axios.post("/send-reset-otp", { email });
-
+      const res = await AxiosPublic.post("/auth/send-reset-otp", { email });
+      if (!res.data.success) {
+        toast.error(res.data.message);
+        return;
+      } else {
+        toast.success(res.data.message);
+      }
       setTimeLeft(OTP_TIME);
       setStep(2);
     } catch (error) {
-      alert(error.response?.data?.message || "Failed to send OTP");
+      toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -52,25 +61,30 @@ const ResetPassword = () => {
     e.preventDefault();
 
     if (timeLeft <= 0) {
-      alert("OTP expired. Please request a new one.");
+      toast.warning("OTP expired. Please try again.");
       return;
     }
 
     try {
       setLoading(true);
-      await axios.post("/reset-password", {
+      const res = await AxiosPublic.post("/auth/reset-password", {
         email,
         otp,
         newPassword,
       });
 
-      alert("Password reset successful!");
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/login");
+      } else {
+        toast.error(res.data.message);
+      }
       setStep(1);
       setEmail("");
       setOtp("");
       setNewPassword("");
     } catch (error) {
-      alert(error.response?.data?.message || "Invalid OTP");
+      toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -94,7 +108,6 @@ const ResetPassword = () => {
               placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
               className="w-full border px-3 py-2 rounded"
             />
 
@@ -166,7 +179,7 @@ const ResetPassword = () => {
 
             {timeLeft <= 0 && (
               <p className="text-center text-sm text-red-500">
-                OTP expired. Please request a new one.
+                OTP expired. Please Try again.
               </p>
             )}
           </form>
