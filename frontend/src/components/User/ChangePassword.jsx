@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ChangePassword = () => {
   const [passwords, setPasswords] = useState({
@@ -6,21 +8,41 @@ const ChangePassword = () => {
     newPassword: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false);
+
+  const AxiosSecure = useAxiosSecure();
 
   const handleChange = (e) => {
     setPasswords({ ...passwords, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (passwords.newPassword !== passwords.confirmPassword) {
-      alert("Passwords do not match");
+      toast.warning("Passwords do not match");
       return;
     }
 
-    console.log("Change password", passwords);
+    //console.log("Change password", passwords);
     // call change password API
+    try {
+      setLoading(true);
+      const res = await AxiosSecure.put("/user/changePassword", {
+        currentPassword: passwords.currentPassword,
+        newPassword: passwords.confirmPassword,
+      });
+
+      if (!res.data.success) {
+        toast.error(res.data.message);
+        return;
+      }
+      toast.success(res.data.message);
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,7 +67,7 @@ const ChangePassword = () => {
             <input
               id="current-password"
               type="password"
-              name="current-password"
+              name="currentPassword"
               onChange={handleChange}
               class="block lg:w-3/5 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             />
@@ -64,7 +86,7 @@ const ChangePassword = () => {
             <input
               id="new-password"
               type="password"
-              name="new-password"
+              name="newPassword"
               onChange={handleChange}
               class="block lg:w-3/5 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             />
@@ -83,7 +105,7 @@ const ChangePassword = () => {
             <input
               id="confirm-password"
               type="password"
-              name="confirm-password"
+              name="confirmPassword"
               onChange={handleChange}
               class="block lg:w-3/5 w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
             />
@@ -94,7 +116,7 @@ const ChangePassword = () => {
           type="submit"
           className="px-5 py-2.5 bg-red-500 text-lg text-white hover:bg-red-600 font-semibold rounded-lg mt-5"
         >
-          Update Password
+          {loading ? "Updating Password" : "Update Password"}
         </button>
       </form>
     </div>

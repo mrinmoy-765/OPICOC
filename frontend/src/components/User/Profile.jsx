@@ -22,21 +22,35 @@ const Profile = () => {
 
   return (
     <div className="lg:flex py-5">
-      {/* Left side */}
-      <div className="w-2/5">
-        <div className="flex flex-col items-center justify-center mt-7">
-          <img
-            src="https://i.pravatar.cc/150"
-            alt="User"
-            className="rounded-full"
-          />
-          <p className="text-red-500 text-2xl">
-            <strong>{data.firstName}</strong>
-          </p>
-          <p>
-            <strong>{data.email}</strong>
-          </p>
-          <p>{data.phone}</p>
+      {/* left side */}
+      <div className="w-full lg:w-2/5 px-4">
+        <div
+          className="
+    flex flex-row items-center gap-4
+    md:flex-col md:items-center 
+    lg:flex-col lg:items-center
+    mt-7
+  "
+        >
+          {/* Avatar */}
+          <div className="w-28 h-28 sm:w-32 sm:h-32">
+            <img
+              src="https://i.pravatar.cc/150"
+              alt="User"
+              className="rounded-full w-full h-full object-cover"
+            />
+          </div>
+
+          {/* User Info */}
+          <div className="text-center space-y-1">
+            <p className="text-red-500 text-xl font-semibold">
+              {data.firstName}
+            </p>
+            <p className="text-sm break-all">{data.email}</p>
+            {data?.phone && (
+              <p className="text-sm text-gray-600">{data.phone}</p>
+            )}
+          </div>
         </div>
       </div>
 

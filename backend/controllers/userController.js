@@ -1,4 +1,6 @@
+import bcrypt from "bcryptjs";
 import userModel from "../models/userModel.js";
+import transporter from "../config/nodemaileer.js";
 
 //get user data(profile)
 export const getUserData = async (req, res) => {
@@ -65,5 +67,70 @@ export const updateProfile = async (req, res) => {
     });
   } catch (error) {
     return res.json({ success: false, message: error.message });
+  }
+};
+
+//change password
+export const changePassword = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { currentPassword, newPassword } = req.body;
+
+    if (!currentPassword || !newPassword) {
+      return res.json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
+    if (newPassword.length < 6) {
+      return res.json({
+        success: false,
+        message: "Password must be at least 6 characters",
+      });
+    }
+
+    // FIND USER BY _id
+    const user = await userModel.findById(userId);
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "Invalid user",
+      });
+    }
+
+    // COMPARE HASHED PASSWORD
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+
+    if (!isMatch) {
+      return res.json({
+        success: false,
+        message: "Current password is incorrect",
+      });
+    }
+
+    // HASH NEW PASSWORD
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+
+    // SEND EMAIL
+    await transporter.sendMail({
+      from: process.env.SENDER_EMAIL,
+      to: user.email,
+      subject: "Password Changed",
+      text: `Your password has been changed successfully. If this wasn't you, contact support immediately.`,
+    });
+
+    return res.json({
+      success: true,
+      message: "Password updated successfully",
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      message: error.message,
+    });
   }
 };

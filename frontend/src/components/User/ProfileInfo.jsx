@@ -46,7 +46,7 @@ const ProfileInfo = ({ user }) => {
     try {
       setLoading(true);
 
-      const res = await AxiosSecure.put("/user/update-profile", {
+      const res = await AxiosSecure.patch("/user/update-profile", {
         FirstName: data.firstName,
         LastName: data.lastName,
         phone: data.phone,
