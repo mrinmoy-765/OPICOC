@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
     country: { type: String, default: "" },
     city: { type: String, default: "" },
     zipCode: { type: String, default: "" },
-
+    image: { type: String, default: "" },
     isAccountBlock: { type: Boolean, default: false },
 
     resetOtp: { type: String, default: "" },
