@@ -10,8 +10,10 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../AuthProvider/AuthContext";
 
 const Login = () => {
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -46,7 +48,9 @@ const Login = () => {
       }
 
       //  Success
-      if (toast.success(res.data.message)) {
+      if (res.data.success) {
+        toast.success("Login successful");
+        await login(); // trigger auth refresh
         navigate("/profile");
       }
     } catch (error) {

@@ -62,7 +62,7 @@ export const verifyEmailOtp = async (req, res) => {
     return res.json({ success: false, message: "OTP expired or not found" });
   }
 
-  // 🚫 Max attempts
+  //  Max attempts
   if (otpRecord.attempts >= 5) {
     await OtpModel.deleteOne({ email });
     return res.json({
@@ -71,7 +71,7 @@ export const verifyEmailOtp = async (req, res) => {
     });
   }
 
-  // ❌ Wrong OTP
+  //  Wrong OTP
   if (otpRecord.otp !== otp) {
     otpRecord.attempts += 1;
     await otpRecord.save();
@@ -82,7 +82,7 @@ export const verifyEmailOtp = async (req, res) => {
     });
   }
 
-  // ✅ OTP correct → create user
+  //  OTP correct → create user
   await userModel.create({
     email,
     FirstName: otpRecord.userData.FirstName,
@@ -158,18 +158,30 @@ export const logout = async (req, res) => {
       sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
     });
 
-    return res.json({ success: true, message: "Logged Out" });
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
   } catch (error) {
-    return res.json({ success: false, message: error.message });
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };
 
 //is user logged in or not
 export const isAuthenticated = async (req, res) => {
   try {
-    return { success: true };
+    return res.json({
+      success: true,
+      user: req.user,
+    });
   } catch (error) {
-    return { success: false, message: error.message };
+    return res.status(401).json({
+      success: false,
+      message: "Not authenticated",
+    });
   }
 };
 

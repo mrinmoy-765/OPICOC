@@ -7,9 +7,26 @@ import { FaCaretDown } from "react-icons/fa";
 import { BsCurrencyDollar } from "react-icons/bs";
 import NavigationDrawer from "./Drawer";
 import { Link } from "react-router-dom";
+import { useAuth } from "../AuthProvider/AuthContext";
+//import useAxiosPublic from "../hooks/useAxiosPublic";
+// import { toast } from "react-toastify";
+// import { useQueryClient } from "@tanstack/react-query";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const { isAuthenticated, isLoading, user, logout } = useAuth();
+
+  // console.log("user", user);
+
+  //if (isLoading) return null;
+  if (isLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     // Main Container: Column on mobile, Row on Desktop
@@ -145,13 +162,22 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* login / user */}
-          <Link
-            to="/login"
-            className="btn btn-neutral btn-outline ml-2 mr-0 btn-sm lg:btn-md lg:ml-5 lg:mr-3"
-          >
-            Login
-          </Link>
+          {/* login /logout user */}
+          {isAuthenticated && user ? (
+            <button
+              onClick={logout}
+              className="btn btn-neutral btn-outline ml-2 mr-0 btn-sm lg:btn-md lg:ml-5 lg:mr-3"
+            >
+              Log out
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="btn btn-neutral btn-outline ml-2 mr-0 btn-sm lg:btn-md lg:ml-5 lg:mr-3"
+            >
+              Log in
+            </Link>
+          )}
         </div>
       </div>
     </div>
