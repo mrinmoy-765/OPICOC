@@ -173,9 +173,22 @@ export const logout = async (req, res) => {
 //is user logged in or not
 export const isAuthenticated = async (req, res) => {
   try {
+    const userId = req.user.id;
+
+    const user = await userModel
+      .findById(userId)
+      .select("_id email role FirstName LastName image");
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
     return res.json({
       success: true,
-      user: req.user,
+      user,
     });
   } catch (error) {
     return res.status(401).json({

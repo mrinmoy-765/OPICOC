@@ -14,7 +14,6 @@ const navLinks = [
   { name: "Shop", path: "/shop" },
   { name: "About", path: "/about" },
   { name: "Contact Us", path: "/contact" },
-  { name: "Admin Login", path: "/admin-login" },
 ];
 
 const NavigationDrawer = ({ open, onClose }) => {

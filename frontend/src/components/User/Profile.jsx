@@ -4,10 +4,15 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import ProfileInfo from "./ProfileInfo";
 import ChangePassword from "./ChangePassword";
 import ProfileImageUpload from "./ProfileImageUpload";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../AuthProvider/AuthContext";
 
 const Profile = () => {
   const AxiosSecure = useAxiosSecure();
   const [preview, setPreview] = useState(null);
+
+  const { user } = useAuth();
+  console.log("User role", user.role);
 
   const { data, isPending, error, refetch } = useQuery({
     queryKey: ["userData"],
@@ -45,6 +50,17 @@ const Profile = () => {
 
             {/* Upload */}
             <ProfileImageUpload refetch={refetch} setPreview={setPreview} />
+            {/* admin dashboard */}
+            {user?.role === "admin" && (
+              <Link
+                to="/adminDashboard"
+                className="group w-full  bg-green-500 py-3 px-7 text-black font-semibold rounded-lg hover:bg-green-700 transition hover:text-white"
+              >
+                <span className="inline-block group-hover:translate-x-2 transition duration-300 ease-in-out cursor-pointer">
+                  Go to Dashboard
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -43,7 +43,7 @@ const ProfileImageUpload = ({ refetch, setPreview }) => {
         className="file-input file-input-warning file-input-xs"
       />
 
-      <button type="submit" className="btn btn-warning btn-xs w-full">
+      <button type="submit" className="btn btn-warning btn-xs w-full mb-5">
         Upload
       </button>
     </form>

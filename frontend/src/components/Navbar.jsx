@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const { isAuthenticated, isLoading, user, logout } = useAuth();
 
-  // console.log("user", user);
+  console.log("user", user);
 
   //if (isLoading) return null;
   if (isLoading) {
@@ -161,6 +161,33 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+
+          {/* user image */}
+
+          {isAuthenticated && user?.image && (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img alt="Tailwind CSS Navbar component" src={user.image} />
+                </div>
+              </div>
+              <ul
+                tabIndex="-1"
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              >
+                <li>
+                  <span>{user.FirstName}</span>
+                </li>
+                <li>
+                  <span>{user.email}</span>
+                </li>
+              </ul>
+            </div>
+          )}
 
           {/* login /logout user */}
           {isAuthenticated && user ? (

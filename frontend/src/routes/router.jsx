@@ -4,10 +4,10 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Auth/Login";
 import Registration from "../pages/Auth/Registration";
-import AdminLogin from "../pages/Auth/AdminLogin";
 import VerifyOtp from "../pages/Auth/VerifyOtp";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import Profile from "../components/User/Profile";
+import AdminDashboard from "../pages/Admin/AdminDashboard";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +22,10 @@ const router = createBrowserRouter([
         path: "/profile",
         element: <Profile></Profile>,
       },
+      {
+        path: "/adminDashboard",
+        element: <AdminDashboard></AdminDashboard>,
+      },
     ],
   },
   {
@@ -31,10 +35,6 @@ const router = createBrowserRouter([
   {
     path: "/registration",
     element: <Registration></Registration>,
-  },
-  {
-    path: "/admin-login",
-    element: <AdminLogin></AdminLogin>,
   },
   {
     path: "/verify-otp",

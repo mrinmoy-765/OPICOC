@@ -17,8 +17,11 @@ export const AuthProvider = ({ children }) => {
       const res = await AxiosSecure.get("/auth/is-authenticated", {
         skipAuthError: true,
       });
+
       return res.data;
+      // console.log("UserInfo", res.data);
     },
+
     retry: false,
   });
 
