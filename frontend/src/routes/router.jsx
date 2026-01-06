@@ -8,6 +8,8 @@ import VerifyOtp from "../pages/Auth/VerifyOtp";
 import ResetPassword from "../pages/Auth/ResetPassword";
 import Profile from "../components/User/Profile";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
+import GetAllUsers from "../pages/Admin/GetAllUsers";
+import GetAllAdmin from "../pages/Admin/GetAllAdmin";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "/adminDashboard",
         element: <AdminDashboard></AdminDashboard>,
+      },
+      {
+        path: "getAllUsers",
+        element: <GetAllUsers></GetAllUsers>,
+      },
+      {
+        path: "getAllAdmins",
+        element: <GetAllAdmin></GetAllAdmin>,
       },
     ],
   },
