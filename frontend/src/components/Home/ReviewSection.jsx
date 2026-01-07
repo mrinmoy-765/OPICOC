@@ -5,9 +5,32 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import WriteReview from "./WriteReview";
+import { useAuth } from "../../AuthProvider/AuthContext";
+import Swal from "sweetalert2";
 
 const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { isAuthenticated, user } = useAuth();
+
+  const handleReview = () => {
+    if (isAuthenticated && user) {
+      setIsModalOpen(true);
+    } else {
+      Swal.fire({
+        title: "Log in first",
+        text: "Please log in to write a review",
+        icon: "warning",
+        customClass: {
+          popup: "my-swal-popup",
+          title: "my-swal-title",
+          htmlContainer: "my-swal-text",
+          confirmButton: "my-swal-button",
+        },
+      });
+      return;
+    }
+  };
 
   // responsive slider settings
   const settings = {
@@ -113,9 +136,10 @@ const ReviewSection = () => {
         </div>
 
         {/* write a review button */}
+
         <div className="w-full flex items-center justify-center py-7">
           <button
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleReview}
             className="group w-full sm:w-1/3 md:w-1/4 lg:w-1/6 bg-white py-3 text-black font-semibold rounded-lg hover:bg-gray-200 transition"
           >
             <span className="inline-block group-hover:translate-x-2 transition duration-300 ease-in-out cursor-pointer">

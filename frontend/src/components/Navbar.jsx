@@ -17,7 +17,7 @@ const Navbar = () => {
 
   const { isAuthenticated, isLoading, user, logout } = useAuth();
 
-  console.log("user", user);
+  // console.log("user", user);
 
   //if (isLoading) return null;
   if (isLoading) {
