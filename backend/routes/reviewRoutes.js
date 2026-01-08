@@ -2,7 +2,10 @@ import express from "express";
 import multer from "multer";
 import userAuth from "../middleware/userAuth.js";
 // import upload from "../middleware/upload.js";
-import { createReview } from "../controllers/reviewController.js";
+import {
+  createReview,
+  getAllReviews,
+} from "../controllers/reviewController.js";
 
 const reviewRouter = express.Router();
 
@@ -16,5 +19,6 @@ reviewRouter.post(
   upload.single("reviewImage"),
   createReview
 );
+reviewRouter.get("/get-reviews", getAllReviews);
 
 export default reviewRouter;

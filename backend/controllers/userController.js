@@ -166,7 +166,7 @@ export const uploadProfileImage = async (req, res) => {
       }
     );
 
-    console.log("Image res", res);
+    //  console.log("Image res", res);
 
     if (!uploadRes.data?.success) {
       return res.status(400).json({

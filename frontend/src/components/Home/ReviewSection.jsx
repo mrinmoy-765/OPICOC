@@ -1,17 +1,35 @@
 import React, { useState } from "react";
-import review_img from "../../assets/review.png";
-import p_photo from "../../assets/product_img.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import WriteReview from "./WriteReview";
+import defaultDP from "../../assets/profile-icon.png";
 import { useAuth } from "../../AuthProvider/AuthContext";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { isAuthenticated, user } = useAuth();
+  const AxiosPublic = useAxiosPublic();
+
+  React.useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await AxiosPublic.get("/review/get-reviews");
+        setReviews(res.data.reviews || []);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchReviews();
+  }, [AxiosPublic]);
 
   const handleReview = () => {
     if (isAuthenticated && user) {
@@ -58,33 +76,9 @@ const ReviewSection = () => {
     ],
   };
 
-  const data = [
-    {
-      name: "Sarker",
-      date: "11 October 2025",
-      review: "@Opi | Pro @Adam | Pro  Base building Gods",
-      user: "Legends Pro Program | Opi & Adam",
-      user_image: review_img, // avatar
-      photo: p_photo, // product photo
-    },
-    {
-      name: "Hridoy",
-      date: "03 March 2025",
-      review: "Amazing base! Pushing made easy.",
-      user: "Clash Pro",
-      user_image: review_img,
-      photo: p_photo,
-    },
-    {
-      name: "Rayhan",
-      date: "21 August 2025",
-      review: "Best service! Highly recommended.",
-      user: "Legends League",
-      user_image: review_img,
-      photo: p_photo,
-    },
-  ];
-
+  if (loading) {
+    return "Loading....";
+  }
   return (
     <div className="bg-[#1d1d1d] py-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,21 +87,29 @@ const ReviewSection = () => {
         {/* slider wrapper ensures responsive width */}
         <div className="w-full">
           <Slider {...settings}>
-            {data.map((d, index) => (
+            {reviews.map((d, index) => (
               <div key={index} className="p-3">
                 <div className="bg-white rounded-xl shadow-md overflow-hidden">
                   {/* product image */}
-                  <img
-                    src={d.user_image}
-                    alt="review product"
-                    className="w-full h-48 sm:h-56 md:h-48 lg:h-56 object-cover"
-                  />
-
+                  {d.reviewImage && (
+                    <img
+                      src={d.reviewImage}
+                      alt="review product"
+                      className="w-full h-48 sm:h-56 md:h-48 lg:h-56 object-cover"
+                    />
+                  )}
                   <div className="p-4">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h2 className="font-bold text-lg">{d.name}</h2>
-                        <p className="text-gray-500 text-sm">{d.date}</p>
+                        <h2 className="font-bold text-lg">{d.FirstName}</h2>
+                        <h2 className="font-bold text-lg">{d.LastName}</h2>
+                        <p className="text-gray-500 text-sm">
+                          {new Date(d.createdAt).toLocaleString("en-GB", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                          })}
+                        </p>
                       </div>
                     </div>
 
@@ -116,17 +118,11 @@ const ReviewSection = () => {
                     {/* user info */}
                     <div className="flex items-center gap-3 mt-4">
                       <img
-                        src={d.photo}
+                        src={d?.userImage || defaultDP}
                         alt="user"
                         className="w-10 h-10 rounded-full object-cover"
                       />
-                      <span className="text-sm text-gray-600">{d.user}</span>
-                    </div>
-
-                    <div className="mt-4">
-                      <button className="px-4 py-2 bg-[#F5B400] text-black font-medium rounded-md hover:bg-yellow-500 transition">
-                        View Product
-                      </button>
+                      <span className="text-sm text-gray-600">{d.email}</span>
                     </div>
                   </div>
                 </div>

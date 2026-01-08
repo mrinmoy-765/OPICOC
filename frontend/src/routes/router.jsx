@@ -10,6 +10,7 @@ import Profile from "../components/User/Profile";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import GetAllUsers from "../pages/Admin/GetAllUsers";
 import GetAllAdmin from "../pages/Admin/GetAllAdmin";
+import CreateBases from "../pages/Admin/createBases";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "getAllAdmins",
         element: <GetAllAdmin></GetAllAdmin>,
+      },
+      {
+        path: "create-bases",
+        element: <CreateBases></CreateBases>,
       },
     ],
   },

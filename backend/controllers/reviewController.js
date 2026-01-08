@@ -45,3 +45,20 @@ export const createReview = async (req, res) => {
     });
   }
 };
+
+//get all reviews
+export const getAllReviews = async (req, res) => {
+  try {
+    const reviews = await reviewModel.find().sort({ createdAt: -1 });
+    res.json({
+      success: true,
+      message: "Review fetched successfully",
+      reviews,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
