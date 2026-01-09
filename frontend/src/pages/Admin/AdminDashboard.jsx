@@ -34,8 +34,12 @@ const AdminDashboard = () => {
         <Link to="/create-bases" className="btn btn-outline btn-warning">
           Add Bases
         </Link>
-        <button className="btn btn-outline btn-warning">Get Bases</button>
-        <button className="btn btn-outline btn-warning">Reviews</button>
+        <Link to="/get-bases" className="btn btn-outline btn-warning">
+          See All Bases
+        </Link>
+        <button className="btn btn-outline btn-warning">
+          View All Reviews
+        </button>
         <button className="btn btn-outline btn-warning">Sales Info</button>
       </div>
     </div>

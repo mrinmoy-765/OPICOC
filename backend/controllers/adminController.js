@@ -84,13 +84,14 @@ export const createProduct = async (req, res) => {
 
     const productImage = uploadRes.data.image.display_url;
 
-    const { title, price, description } = req.body;
+    const { title, price, badge, description } = req.body;
 
     const links = JSON.parse(req.body.links);
 
     await productModel.create({
       title,
       price,
+      badge,
       description,
       links,
       productImage,
@@ -106,5 +107,137 @@ export const createProduct = async (req, res) => {
       message: error.message,
     });
     console.log("error", error);
+  }
+};
+
+//get all products
+export const getBases = async (req, res) => {
+  try {
+    const bases = await productModel.find();
+    res.json({
+      success: true,
+      message: "Product Fetched Successfully",
+      bases,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      messsage: error.message,
+    });
+  }
+};
+
+//get product by id
+export const getSpecificBase = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Base ID is required",
+      });
+    }
+
+    const base = await productModel.findById(id);
+
+    if (!base) {
+      return res.status(404).json({
+        success: false,
+        message: "Base not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Product Fetched Successfully",
+      base,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//update product
+export const updateBase = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Base ID is required",
+      });
+    }
+
+    const { title, price, badge, description, links, productImage } = req.body;
+
+    const updatedBase = await productModel.findByIdAndUpdate(
+      id,
+      {
+        title,
+        price,
+        badge,
+        description,
+        links,
+        productImage,
+      },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedBase) {
+      return res.status(404).json({
+        success: false,
+        message: "Base not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Base updated successfully",
+      base: updatedBase,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//delete product
+export const deleteBase = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Base ID is required",
+      });
+    }
+
+    const deletedBase = await productModel.findByIdAndDelete(id);
+
+    if (!deletedBase) {
+      return res.status(404).json({
+        success: false,
+        message: "Base not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Base deleted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };

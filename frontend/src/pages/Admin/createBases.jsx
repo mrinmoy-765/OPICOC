@@ -27,6 +27,7 @@ const CreateBases = () => {
 
       formData.append("title", data.title);
       formData.append("price", data.price);
+      formData.append("badge", data.badge);
       formData.append("description", data.description);
       formData.append("productImage", data.productImage[0]);
 
@@ -83,6 +84,14 @@ const CreateBases = () => {
           type="number"
           placeholder="Price"
           {...register("price", { required: true })}
+          className="input input-bordered w-full"
+        />
+
+        {/* Badge */}
+        <input
+          type="text"
+          placeholder="Badge : 1 X 5"
+          {...register("badge", { required: true })}
           className="input input-bordered w-full"
         />
 

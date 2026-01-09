@@ -11,6 +11,8 @@ import AdminDashboard from "../pages/Admin/AdminDashboard";
 import GetAllUsers from "../pages/Admin/GetAllUsers";
 import GetAllAdmin from "../pages/Admin/GetAllAdmin";
 import CreateBases from "../pages/Admin/createBases";
+import GetAllBases from "../pages/Admin/GetAllBases";
+import EditBase from "../pages/Admin/EditBase";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "create-bases",
         element: <CreateBases></CreateBases>,
+      },
+      {
+        path: "get-bases",
+        element: <GetAllBases></GetAllBases>,
+      },
+      {
+        path: "admin/edit-base/:id",
+        element: <EditBase></EditBase>,
       },
     ],
   },
