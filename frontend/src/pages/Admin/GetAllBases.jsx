@@ -96,7 +96,7 @@ const GetAllBases = () => {
         {/* Search */}
         <input
           type="text"
-          placeholder="Search bases by title, price, label"
+          placeholder="Search bases by title,  label & links"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="input input-bordered w-full sm:max-w-sm"

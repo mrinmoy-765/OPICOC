@@ -13,6 +13,11 @@ import GetAllAdmin from "../pages/Admin/GetAllAdmin";
 import CreateBases from "../pages/Admin/createBases";
 import GetAllBases from "../pages/Admin/GetAllBases";
 import EditBase from "../pages/Admin/EditBase";
+import AllProducts from "../pages/AllProducts";
+import Cart from "../pages/CartPage";
+import TermsConditions from "../pages/TermsConditions";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import Faq from "../pages/Faq";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +55,26 @@ const router = createBrowserRouter([
       {
         path: "admin/edit-base/:id",
         element: <EditBase></EditBase>,
+      },
+      {
+        path: "/all-products",
+        element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "/cart",
+        element: <Cart></Cart>,
+      },
+      {
+        path: "/terms-conditions",
+        element: <TermsConditions></TermsConditions>,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
+      {
+        path: "/FAQ's",
+        element: <Faq></Faq>,
       },
     ],
   },

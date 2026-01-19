@@ -8,6 +8,7 @@ import { BsCurrencyDollar } from "react-icons/bs";
 import NavigationDrawer from "./Drawer";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthContext";
+import { useCart } from "../context/CartContext";
 //import useAxiosPublic from "../hooks/useAxiosPublic";
 // import { toast } from "react-toastify";
 // import { useQueryClient } from "@tanstack/react-query";
@@ -16,6 +17,7 @@ const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { isAuthenticated, isLoading, user, logout } = useAuth();
+  const { cartItems, totalPrice } = useCart();
 
   // console.log("user", user);
 
@@ -51,12 +53,12 @@ const Navbar = () => {
         />
 
         {/* Logo & Text Group */}
-        <div className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={Legend} alt="" className="w-[50px] h-[50px] lg:ml-7" />
           <p className="font-medium font-clash text-2xl text-white ml-1.5">
             Opicoc
           </p>
-        </div>
+        </Link>
       </div>
 
       {/* --- ROW 2: Search Bar --- */}
@@ -89,10 +91,19 @@ const Navbar = () => {
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               <li>
-                <a>Item 1</a>
+                <a>TH 18 Pro Pack</a>
               </li>
               <li>
-                <a>Item 2</a>
+                <a>TH 17 Pro Pack</a>
+              </li>
+              <li>
+                <a>TH 16 Pro Pack</a>
+              </li>
+              <li>
+                <a>TH 15 Pro Pack</a>
+              </li>
+              <li>
+                <a>Custom Base</a>
               </li>
             </ul>
           </div>
@@ -108,14 +119,14 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm items-center"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Item 2</a>
-              </li>
+              <li>USD</li>
+              <li>EUR</li>
+              <li>CAD</li>
+              <li>AUD</li>
+              <li>SGD</li>
+              <li>GBP</li>
             </ul>
           </div>
         </div>
@@ -143,7 +154,9 @@ const Navbar = () => {
                     d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                   />
                 </svg>
-                <span className="badge badge-sm indicator-item">8</span>
+                <span className="badge badge-sm indicator-item">
+                  {cartItems.length}
+                </span>
               </div>
             </div>
             <div
@@ -151,12 +164,14 @@ const Navbar = () => {
               className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
             >
               <div className="card-body">
-                <span className="text-lg font-bold">8 Items</span>
-                <span className="text-info">Subtotal: $999</span>
+                <span className="text-lg font-bold">
+                  {cartItems.length} Items
+                </span>
+                <span className="text-info">Subtotal: ${totalPrice}</span>
                 <div className="card-actions">
-                  <button className="btn btn-primary btn-block">
-                    View cart
-                  </button>
+                  <Link to="/cart" className="bg-amber-300 btn btn-block">
+                    View Cart
+                  </Link>
                 </div>
               </div>
             </div>

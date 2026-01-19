@@ -10,10 +10,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Profile", path: "/profile" },
-  { name: "Currency", path: "/currency" },
-  { name: "Shop", path: "/shop" },
-  { name: "About", path: "/about" },
-  { name: "Contact Us", path: "/contact" },
+  { name: "Currency", path: "/" },
+  { name: "Shop", path: "/all-products" },
+  { name: "About", path: "/" },
+  { name: "Contact Us", path: "/" },
 ];
 
 const NavigationDrawer = ({ open, onClose }) => {

@@ -15,7 +15,7 @@ const adminRouter = express.Router();
 
 adminRouter.get("/get-users", adminAuth, getAllUsers);
 adminRouter.get("/get-admins", adminAuth, getAllAdmins);
-adminRouter.get("/get-bases", adminAuth, getBases);
+adminRouter.get("/get-bases", getBases);
 adminRouter.get("/get-base/:id", adminAuth, getSpecificBase);
 adminRouter.put("/update-base/:id", adminAuth, updateBase);
 adminRouter.delete("/deleteBase/:id", adminAuth, deleteBase);

@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
 
       // Clear cached user data
       queryClient.clear();
+      localStorage.removeItem("cart");
 
       // Redirect AFTER toast
       setTimeout(() => {

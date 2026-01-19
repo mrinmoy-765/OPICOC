@@ -1,35 +1,63 @@
 import React from "react";
 import BannerImage from "../../assets/Hero_Banner.png";
+import BannerIMage2 from "../../assets/wallpaperflare.com.png";
+import BannerIMage3 from "../../assets/Banner_11.png";
 import { AiOutlineYoutube, AiFillInstagram } from "react-icons/ai";
 import { PiDiscordLogoLight } from "react-icons/pi";
 import { BsTwitterX } from "react-icons/bs";
 import { IoLogoFacebook } from "react-icons/io5";
 import { FiTwitch } from "react-icons/fi";
+import Slider from "react-slick";
+
+// IMPORTANT: slick styles (must be imported once globally)
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const iconStyle =
-  "lg:w-10 lg:h-10 md:w-8 md:h-8 w-5 h-5  lg:p-1.5 md:pd-2 p-1 text-white lg:border-2 border border-white rounded-full hover:bg-white hover:text-black transition";
+  "lg:w-10 lg:h-10 md:w-8 md:h-8 w-5 h-5 lg:p-1.5 md:p-2 p-1 text-white lg:border-2 border border-white rounded-full hover:bg-white hover:text-black transition";
 
 const Banner = () => {
+  const banners = [BannerImage, BannerIMage2, BannerIMage3];
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 700,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: false,
+  };
+
   return (
     <div className="relative w-full">
-      {/* Background Image */}
-      <img src={BannerImage} alt="" className="w-full h-auto object-cover" />
+      <Slider {...settings}>
+        {banners.map((img, index) => (
+          <div key={index}>
+            <img
+              src={img}
+              alt={`Banner ${index + 1}`}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        ))}
+      </Slider>
 
-      {/* Social Icons — vertically centered */}
+      {/* Social Icons */}
       <div
         className="
           absolute 
           top-1/2 -translate-y-1/2 
           left-4 md:left-10 
           flex flex-col 
-          space-y-3
-          md:space-y-7
-          lg:space-y-10 
+          space-y-3 md:space-y-7 lg:space-y-10 
           bg-black/20 backdrop-blur-md 
           rounded-full
+          p-2
         "
       >
-        {/* All icons styled same as first one */}
         <AiOutlineYoutube className={iconStyle} />
         <PiDiscordLogoLight className={iconStyle} />
         <BsTwitterX className={iconStyle} />

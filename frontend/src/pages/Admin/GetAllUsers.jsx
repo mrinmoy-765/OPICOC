@@ -62,7 +62,7 @@ const GetAllUsers = () => {
         {/* Search */}
         <input
           type="text"
-          placeholder="Search users"
+          placeholder="Search users by F. Name, L. Name, Email"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="input input-bordered w-full sm:max-w-sm"

@@ -4,12 +4,17 @@ import defaultDP from "../../assets/profile-icon.png";
 const UserListTable = ({ users }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const safeCurrentPage = Math.min(
+    currentPage,
+    Math.max(1, Math.ceil(users.length / itemsPerPage))
+  );
+
   const totalPages = Math.ceil(users.length / itemsPerPage);
 
   // Slice bookings for current page
   const paginatedUsers = users.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    (safeCurrentPage - 1) * itemsPerPage,
+    safeCurrentPage * itemsPerPage
   );
 
   const getPages = () => {
@@ -87,7 +92,7 @@ const UserListTable = ({ users }) => {
             <button
               className="btn btn-sm btn-outline"
               onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage === 1}
+              disabled={safeCurrentPage === 1}
             >
               Prev
             </button>

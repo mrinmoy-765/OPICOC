@@ -3,12 +3,18 @@ import { Link } from "react-router-dom";
 
 const BaseListTable = ({ bases = [], onDelete }) => {
   const [currentPage, setCurrentPage] = useState(1);
+
   const itemsPerPage = 10;
+  const safeCurrentPage = Math.min(
+    currentPage,
+    Math.max(1, Math.ceil(bases.length / itemsPerPage))
+  );
+
   const totalPages = Math.ceil(bases.length / itemsPerPage);
 
   const paginatedBases = bases.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    (safeCurrentPage - 1) * itemsPerPage,
+    safeCurrentPage * itemsPerPage
   );
 
   const getPages = () => {
@@ -52,7 +58,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
             <th className="text-center">Price</th>
             <th className="text-center">Badge</th>
             <th className="text-center">Description</th>
-            <th className="text-center">Links</th>
+            <th className="text-center">Labels & Links</th>
             <th className="text-center">Created</th>
             <th className="text-center">Actions</th>
           </tr>
@@ -133,7 +139,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
             <button
               className="btn btn-sm join-item"
               onClick={() => setCurrentPage((p) => p - 1)}
-              disabled={currentPage === 1}
+              disabled={safeCurrentPage === 1}
             >
               Prev
             </button>

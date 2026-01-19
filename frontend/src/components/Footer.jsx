@@ -10,6 +10,7 @@ import { PiDiscordLogoLight } from "react-icons/pi";
 import { BsTwitterX } from "react-icons/bs";
 import { IoLogoFacebook } from "react-icons/io5";
 import { FiTwitch } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const iconStyle =
   "lg:w-10 lg:h-10 md:w-8 md:h-8 w-7 h-7  lg:p-1.5 md:pd-2 p-1 text-white lg:border-2 border border-white rounded-full hover:bg-white hover:text-black transition";
@@ -33,7 +34,7 @@ const Footer = () => {
           />
           <div className="flex gap-1">
             <AiOutlineMail className="text-3xl" />
-            <span className="text-xl">Support@Opicoc.com</span>
+            <span className="text-xl">support@Opicoc.com</span>
           </div>
         </nav>
         <nav>
@@ -68,9 +69,19 @@ const Footer = () => {
         <nav>
           <h6 className="text-white font-bold text-3xl mb-2">Overview</h6>
           <a className="link link-hover">Pricing</a>
-          <a className="link link-hover">FAQs</a>
+          <Link to="/FAQ's" className="link link-hover">
+            FAQs
+          </Link>
           <a className="link link-hover">Help</a>
-          <a className="link link-hover">Home</a>
+          <Link
+            to="/"
+            className="link link-hover"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            Home
+          </Link>
           <img
             src={logo}
             alt=""
@@ -91,9 +102,13 @@ const Footer = () => {
         </nav>
       </footer>
       <div className="flex justify-between  text-white text-sm backdrop-blur-sm px-5 lg:py-6 md:py-5 py-3 border-base-300 border-t">
-        <div>Terms & Conditions</div>
+        <Link to="/terms-conditions" className="hover:underline">
+          Terms & Conditions
+        </Link>
         <div>© 2025 Copyright by Opicoc</div>
-        <div>Privacy Policy</div>
+        <Link to="/privacy-policy" className="hover:underline">
+          Privacy Policy
+        </Link>
       </div>
     </div>
   );

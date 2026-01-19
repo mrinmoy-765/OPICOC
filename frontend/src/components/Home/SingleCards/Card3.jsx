@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Product_Image from "../../../assets/product_Img_3.png";
 
 const Card3 = () => {
-  const [quantity, setQuantity] = useState(1);
-
-  const increase = () => setQuantity(quantity + 1);
-  const decrease = () => quantity > 1 && setQuantity(quantity - 1);
-
   return (
     <div className="bg-[#1d1d1d] w-full px-4 md:px-10 py-12">
       {/* Card Layout */}
@@ -23,7 +18,7 @@ const Card3 = () => {
         {/* Text Content */}
         <div className="text-white max-w-xl space-y-4">
           <h1 className="text-3xl md:text-4xl font-clash leading-snug">
-            TH18 Special Pushing Base Pack Limited Edition
+            TH18 Tournament Base Limited Edition
           </h1>
 
           <h2 className="text-2xl">$15</h2>
@@ -43,35 +38,6 @@ const Card3 = () => {
           </div>
 
           {/* Buttons */}
-          <div className="space-y-4 mt-6">
-            {/* Quantity Section */}
-            <div className="flex items-center gap-4 mt-4">
-              <div className="flex items-center bg-white rounded-2xl px-7 py-2 gap-4">
-                <button
-                  onClick={decrease}
-                  className="text-xl font-bold text-black"
-                >
-                  -
-                </button>
-
-                <span className="text-lg text-[#F5B400]">{quantity}</span>
-
-                <button
-                  onClick={increase}
-                  className="text-xl font-bold text-black"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-            <button className="w-full md:w-4/5 bg-[#F5B400] py-3 text-black font-semibold rounded-lg hover:bg-yellow-500 transition">
-              Buy Now
-            </button>
-
-            <button className="w-full md:w-4/5 bg-[#F5B400] py-3 text-black font-semibold rounded-lg hover:bg-yellow-500 transition">
-              Add To Cart
-            </button>
-          </div>
         </div>
       </div>
     </div>
