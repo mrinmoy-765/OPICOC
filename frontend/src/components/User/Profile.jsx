@@ -12,7 +12,7 @@ const Profile = () => {
   const [preview, setPreview] = useState(null);
 
   const { user } = useAuth();
-  console.log("User role", user.role);
+  // console.log("User role", user.role);
 
   const { data, isPending, error, refetch } = useQuery({
     queryKey: ["userData"],
@@ -25,7 +25,7 @@ const Profile = () => {
   if (isPending) return <p>Loading...</p>;
   if (error) return <p>Failed to load profile</p>;
 
-  const imageSrc = preview || data?.image || "https://i.pravatar.cc/150";
+  const imageSrc = preview || data?.image;
 
   return (
     <div className="lg:flex py-5">

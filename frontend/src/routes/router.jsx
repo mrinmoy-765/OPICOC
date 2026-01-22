@@ -18,6 +18,8 @@ import Cart from "../pages/CartPage";
 import TermsConditions from "../pages/TermsConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Faq from "../pages/Faq";
+import ContactUs from "../pages/ContactUs";
+import AdminContactMessages from "../pages/Admin/AdminContactMessages";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +77,14 @@ const router = createBrowserRouter([
       {
         path: "/FAQ's",
         element: <Faq></Faq>,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/contact-messages",
+        element: <AdminContactMessages></AdminContactMessages>,
       },
     ],
   },

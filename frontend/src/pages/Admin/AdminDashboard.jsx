@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Legend from "../../assets/Legend.png";
 import { useAuth } from "../../AuthProvider/AuthContext";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AdminDashboard = () => {
+  const [unreadCount, setUnreadCount] = useState();
+  const [loading, setLoading] = useState(true);
   const { user } = useAuth();
+  const AxiosSecure = useAxiosSecure();
+
+  // Fetch users ONCE
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        setLoading(true);
+        const res = await AxiosSecure.get("/contact/unread-count");
+        setUnreadCount(res.data.count);
+      } catch (error) {
+        console.error(error);
+        toast.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, [AxiosSecure]);
+  if (loading) return <p>Loading...</p>;
   return (
     <div className="my-3.5">
       <div className="badge badge-soft badge-success text-start">
@@ -36,6 +60,12 @@ const AdminDashboard = () => {
         </Link>
         <Link to="/get-bases" className="btn btn-outline btn-warning">
           See All Bases
+        </Link>
+        <Link to="/contact-messages" className="btn btn-outline btn-warning">
+          Inbox{" "}
+          <div className="badge badge-sm badge-warning">
+            {unreadCount > 0 && <span>{unreadCount}</span>}
+          </div>
         </Link>
         <button className="btn btn-outline btn-warning">
           View All Reviews

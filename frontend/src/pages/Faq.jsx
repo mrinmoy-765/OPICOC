@@ -21,7 +21,6 @@ const Faq = () => {
       answer:
         'Go to "My Account" settings and select "Edit Profile" to make changes.',
     },
-    // ----------------
     {
       question: "What's the difference between packs?",
       answer: (
@@ -92,7 +91,8 @@ const Faq = () => {
   const filteredFaqs = faqs.filter(
     (faq) =>
       faq.question.toLowerCase().includes(search.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(search.toLowerCase())
+      (typeof faq.answer === "string" &&
+        faq.answer.toLowerCase().includes(search.toLowerCase())),
   );
 
   return (

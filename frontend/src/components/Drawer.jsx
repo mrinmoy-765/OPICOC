@@ -13,7 +13,7 @@ const navLinks = [
   { name: "Currency", path: "/" },
   { name: "Shop", path: "/all-products" },
   { name: "About", path: "/" },
-  { name: "Contact Us", path: "/" },
+  { name: "Contact Us", path: "/contact-us" },
 ];
 
 const NavigationDrawer = ({ open, onClose }) => {

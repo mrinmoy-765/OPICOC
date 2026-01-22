@@ -7,6 +7,7 @@ import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import adminRouter from "./routes/adminRoutes.js";
 import reviewRouter from "./routes/reviewRoutes.js";
+import contactRouter from "./routes/contactRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -18,7 +19,7 @@ app.use(
   cors({
     origin: "http://localhost:5173", // your frontend URL
     credentials: true,
-  })
+  }),
 );
 
 //API Endpoints
@@ -27,4 +28,5 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/review", reviewRouter);
+app.use("/api/contact", contactRouter);
 app.listen(port, () => console.log(`Server started on PORT:${port}`));
