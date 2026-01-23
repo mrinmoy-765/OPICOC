@@ -70,7 +70,7 @@ export const createProduct = async (req, res) => {
       {
         headers: formData.getHeaders(),
         maxBodyLength: Infinity,
-      }
+      },
     );
 
     // console.log("Image res", res);
@@ -84,7 +84,16 @@ export const createProduct = async (req, res) => {
 
     const productImage = uploadRes.data.image.display_url;
 
-    const { title, price, badge, description } = req.body;
+    const {
+      title,
+      price,
+      badge,
+      description,
+      createdBy,
+      maxSell,
+      seasonStartDate,
+      seasonEndDate,
+    } = req.body;
 
     const links = JSON.parse(req.body.links);
 
@@ -95,6 +104,10 @@ export const createProduct = async (req, res) => {
       description,
       links,
       productImage,
+      createdBy,
+      maxSell,
+      seasonStartDate,
+      seasonEndDate,
     });
 
     res.json({
@@ -113,10 +126,10 @@ export const createProduct = async (req, res) => {
 //get all products
 export const getBases = async (req, res) => {
   try {
-    const bases = await productModel.find();
+    const bases = await productModel.find().sort({ createdAt: -1 });
     res.json({
       success: true,
-      message: "Product Fetched Successfully",
+      message: "All Products Fetched Successfully",
       bases,
     });
   } catch (error) {
@@ -174,7 +187,59 @@ export const updateBase = async (req, res) => {
       });
     }
 
-    const { title, price, badge, description, links, productImage } = req.body;
+    let {
+      title,
+      price,
+      badge,
+      description,
+      links,
+      productImage,
+      maxSell,
+      seasonStartDate,
+      seasonEndDate,
+      updatedBy,
+    } = req.body;
+    console.log(req.body);
+    // Handle image upload if a new file is provided
+    if (req.file) {
+      try {
+        const formData = new FormData();
+        formData.append("source", req.file.buffer, {
+          filename: req.file.originalname,
+          contentType: req.file.mimetype,
+        });
+
+        const apiKey = process.env.FREEIMAGE_KEY;
+
+        const uploadRes = await axios.post(
+          `https://freeimage.host/api/1/upload?key=${apiKey}`,
+          formData,
+          {
+            headers: formData.getHeaders(),
+            maxBodyLength: Infinity,
+          },
+        );
+
+        if (!uploadRes.data?.success) {
+          return res.status(400).json({
+            success: false,
+            message: "Image hosting failed",
+          });
+        }
+
+        // Update productImage with the new uploaded image URL
+        productImage = uploadRes.data.image.display_url;
+      } catch (uploadError) {
+        return res.status(500).json({
+          success: false,
+          message: "Error uploading image: " + uploadError.message,
+        });
+      }
+    }
+    // If no file is provided, productImage will be the existing URL from the body
+
+    // Parse links if it's a string (from FormData)
+    const parsedLinks = typeof links === "string" ? JSON.parse(links) : links;
 
     const updatedBase = await productModel.findByIdAndUpdate(
       id,
@@ -183,10 +248,14 @@ export const updateBase = async (req, res) => {
         price,
         badge,
         description,
-        links,
+        links: parsedLinks,
         productImage,
+        maxSell,
+        seasonStartDate,
+        seasonEndDate,
+        updatedBy,
       },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!updatedBase) {

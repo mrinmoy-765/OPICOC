@@ -7,6 +7,12 @@ const productSchema = new mongoose.Schema(
     badge: { type: String, required: true },
     description: { type: String, required: true },
     productImage: { type: String, required: true },
+    createdBy: { type: String, required: true },
+    updatedBy: { type: String, required: false },
+
+    maxSell: { type: Number, required: false },
+    seasonStartDate: { type: Date, required: false },
+    seasonEndDate: { type: Date, required: false },
 
     links: [
       {
@@ -15,7 +21,7 @@ const productSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const productModel =

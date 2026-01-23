@@ -4,10 +4,13 @@ import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useAuth } from "../../AuthProvider/AuthContext";
 
 const CreateBases = () => {
   const [loading, setLoading] = useState(false);
   const AxiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  console.log(user);
 
   const { register, control, handleSubmit, reset } = useForm({
     defaultValues: {
@@ -29,7 +32,11 @@ const CreateBases = () => {
       formData.append("price", data.price);
       formData.append("badge", data.badge);
       formData.append("description", data.description);
+      formData.append("maxSell", data.maxSell);
+      formData.append("seasonStartDate", data.seasonStartDate);
+      formData.append("seasonEndDate", data.seasonEndDate);
       formData.append("productImage", data.productImage[0]);
+      formData.append("createdBy", user.FirstName);
 
       formData.append("links", JSON.stringify(data.links));
 
@@ -101,6 +108,32 @@ const CreateBases = () => {
           {...register("description", { required: true })}
           className="textarea textarea-bordered w-full h-32"
         />
+
+        {/*  Max sell count */}
+        <input
+          type="number"
+          placeholder="Max Sell"
+          {...register("maxSell")}
+          className="input input-bordered w-full"
+        />
+
+        <label className="input input-bordered">
+          <span className="label-text">Season Start Date :</span>
+          <input
+            type="date"
+            {...register("seasonStartDate")}
+            className="w-full"
+          />
+        </label>
+
+        <label className="input input-bordered">
+          <span className="label-text">Season End Date :</span>
+          <input
+            type="date"
+            {...register("seasonEndDate")}
+            className="w-full"
+          />
+        </label>
 
         {/* Dynamic Links */}
         <div className="space-y-4">
