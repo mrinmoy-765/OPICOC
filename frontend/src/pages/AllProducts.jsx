@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useCart } from "../context/CartContext";
+import { GiPowerLightning } from "react-icons/gi";
 
 const AllProducts = () => {
   const AxiosPublic = useAxiosPublic();
@@ -35,7 +36,7 @@ const AllProducts = () => {
   const filteredBases = bases.filter(
     (base) =>
       base.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      base.title.toLowerCase().includes(searchTerm.toLowerCase())
+      base.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   // Sorting after filtering
@@ -51,7 +52,7 @@ const AllProducts = () => {
 
   const paginatedBases = sortedBases.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    currentPage * itemsPerPage,
   );
 
   const getPages = () => {
@@ -68,7 +69,7 @@ const AllProducts = () => {
           totalPages - 3,
           totalPages - 2,
           totalPages - 1,
-          totalPages
+          totalPages,
         );
       } else {
         pages.push(
@@ -78,7 +79,7 @@ const AllProducts = () => {
           currentPage,
           currentPage + 1,
           "...",
-          totalPages
+          totalPages,
         );
       }
     }
@@ -125,7 +126,20 @@ const AllProducts = () => {
             </figure>
 
             <div className="card-body bg-[#1d1d1d]">
-              <p className="text-white">⭐⭐⭐⭐⭐</p>
+              <div className="flex justify-between items-center">
+                <p className="text-white">⭐⭐⭐⭐⭐</p>
+                <div className="flex justify-center items-center">
+                  <GiPowerLightning className="text-white text-2xl" />
+                  <span className="text-white text-sm">
+                    This pack is validate for{" "}
+                    {Math.ceil(
+                      (new Date(base.seasonEndDate) - new Date()) /
+                        (1000 * 3600 * 24),
+                    )}{" "}
+                    days
+                  </span>
+                </div>
+              </div>
 
               <h2 className="card-title font-clash text-white  hover:text-gray-300">
                 {base.title}

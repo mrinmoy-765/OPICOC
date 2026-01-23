@@ -199,7 +199,7 @@ export const updateBase = async (req, res) => {
       seasonEndDate,
       updatedBy,
     } = req.body;
-    console.log(req.body);
+
     // Handle image upload if a new file is provided
     if (req.file) {
       try {
