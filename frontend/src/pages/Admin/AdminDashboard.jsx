@@ -67,10 +67,9 @@ const AdminDashboard = () => {
             {unreadCount > 0 && <span>{unreadCount}</span>}
           </div>
         </Link>
-        <button className="btn btn-outline btn-warning">
-          View All Reviews
-        </button>
-        <button className="btn btn-outline btn-warning">Sales Info</button>
+        <Link to="/about-list" className="btn btn-outline btn-warning">
+          About
+        </Link>
       </div>
     </div>
   );

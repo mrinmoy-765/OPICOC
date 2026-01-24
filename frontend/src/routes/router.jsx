@@ -20,6 +20,10 @@ import PrivacyPolicy from "../pages/PrivacyPolicy";
 import Faq from "../pages/Faq";
 import ContactUs from "../pages/ContactUs";
 import AdminContactMessages from "../pages/Admin/AdminContactMessages";
+import AboutList from "../pages/Admin/AboutList";
+import CreateAboutForm from "../pages/Admin/createAboutForm";
+import EditAbout from "../pages/Admin/EditAbout";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +89,22 @@ const router = createBrowserRouter([
       {
         path: "/contact-messages",
         element: <AdminContactMessages></AdminContactMessages>,
+      },
+      {
+        path: "/about-list",
+        element: <AboutList></AboutList>,
+      },
+      {
+        path: "/create-about",
+        element: <CreateAboutForm></CreateAboutForm>,
+      },
+      {
+        path: "/edit-about/:id",
+        element: <EditAbout></EditAbout>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
       },
     ],
   },

@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import townhallModel from "../models/townHall.js";
 import productModel from "../models/productModel.js";
+import aboutModel from "../models/aboutModel.js";
 import axios from "axios";
 import FormData from "form-data";
 
@@ -328,6 +329,148 @@ export const getTownHalls = async (req, res) => {
     });
   } catch (error) {
     res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//generate about
+export const generateAbout = async (req, res) => {
+  try {
+    let { heading, content } = req.body;
+
+    await aboutModel.create({ heading, content });
+
+    res.json({
+      success: true,
+      message: "About Content Generated",
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//get about list
+export const getAbout = async (req, res) => {
+  try {
+    const about = await aboutModel.find().sort({ createsAt: -1 });
+    res.json({
+      success: true,
+      message: "Fetched Successfully",
+      about,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//get about by id
+export const getSpecificAbout = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "ID is required",
+      });
+    }
+
+    const about = await aboutModel.findById(id);
+
+    if (!about) {
+      return res.status(404).json({
+        success: false,
+        message: "Content not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Fetched Successfully",
+      about,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//update about content
+
+export const updateAbout = async (req, res) => {
+  try {
+    console.log("HIT");
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "Id not Found",
+      });
+    }
+
+    const { heading, content } = req.body;
+
+    const updateAbout = await aboutModel.findByIdAndUpdate(
+      id,
+      {
+        heading,
+        content,
+      },
+      { new: true, runValidators: true },
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "About updated successfully",
+      data: updateAbout,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//delete about content
+export const deleteAbout = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "ID is required",
+      });
+    }
+
+    const deletedAbout = await aboutModel.findByIdAndDelete(id);
+
+    if (!deletedAbout) {
+      return res.status(404).json({
+        success: false,
+        message: "Content not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "About Content deleted successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
       success: false,
       message: error.message,
     });

@@ -9,6 +9,11 @@ import {
   updateBase,
   deleteBase,
   getTownHalls,
+  generateAbout,
+  getAbout,
+  updateAbout,
+  getSpecificAbout,
+  deleteAbout,
 } from "../controllers/adminController.js";
 import adminAuth from "../middleware/adminAuth.js";
 
@@ -36,4 +41,9 @@ adminRouter.post(
   createProduct,
 );
 adminRouter.get("/get-townHall", getTownHalls);
+adminRouter.post("/create-about", adminAuth, generateAbout);
+adminRouter.get("/get-about", getAbout);
+adminRouter.put("/update-about/:id", adminAuth, updateAbout);
+adminRouter.get("/get-about/:id", adminAuth, getSpecificAbout);
+adminRouter.delete("/delete-about/:id", adminAuth, deleteAbout);
 export default adminRouter;

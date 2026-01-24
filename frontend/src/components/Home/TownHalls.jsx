@@ -8,58 +8,136 @@ import { Link } from "react-router-dom";
 const TownHalls = () => {
   return (
     <div className="bg-[#1d1d1d] px-10">
-      <h1 className="md:text-4xl lg:text-4xl font-clash text-white">
+      <h1 className="md:text-4xl lg:text-4xl font-clash text-white mb-3">
         Choose Base
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/* th 1 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          <figure className="px-10 pt-10 bg-[#1d1d1d]">
+          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
             <img
               src={TownHall18}
               alt="town hall"
               className="w-[286px] h-[286px]"
             />
-          </figure>
+          </figure> */}
+          <div className="hover-3d">
+            {/* content */}
+            <figure className="max-w-100 rounded-2xl">
+              <img
+                src={TownHall18}
+                alt="3D card"
+                className="w-[286px] h-[286px]"
+              />
+            </figure>
+            {/* 8 empty divs needed for the 3D effect */}
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 18</h2>
           </div>
         </div>
         {/* th 2 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          <figure className="px-10 pt-10 bg-[#1d1d1d]">
+          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
             <img
               src={TownHall17}
               alt="town hall"
               className="w-[286px] h-[286px]"
             />
-          </figure>
+          </figure> */}
+          <div className="hover-3d">
+            {/* content */}
+            <figure className="max-w-100 rounded-2xl">
+              <img
+                src={TownHall17}
+                alt="3D card"
+                className="w-[286px] h-[286px]"
+              />
+            </figure>
+            {/* 8 empty divs needed for the 3D effect */}
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 17</h2>
           </div>
         </div>
         {/* th 3 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          <figure className="px-10 pt-10 bg-[#1d1d1d]">
+          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
             <img
               src={TownHall16}
               alt="town hall"
               className="w-[286px] h-[286px]"
             />
-          </figure>
+          </figure> */}
+          <div className="hover-3d">
+            {/* content */}
+            <figure className="max-w-100 rounded-2xl">
+              <img
+                src={TownHall16}
+                alt="3D card"
+                className="w-[286px] h-[286px]"
+              />
+            </figure>
+            {/* 8 empty divs needed for the 3D effect */}
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 16</h2>
           </div>
         </div>
         {/* th 4 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          <figure className="px-10 pt-10 bg-[#1d1d1d]">
+          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
             <img
               src={TownHall15}
               alt="town hall"
               className="w-[286px] h-[286px]"
             />
-          </figure>
+          </figure> */}
+          <div className="hover-3d">
+            {/* content */}
+            <figure className="max-w-100 rounded-2xl">
+              <img
+                src={TownHall15}
+                alt="3D card"
+                className="w-[286px] h-[286px]"
+              />
+            </figure>
+            {/* 8 empty divs needed for the 3D effect */}
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 15</h2>
           </div>
