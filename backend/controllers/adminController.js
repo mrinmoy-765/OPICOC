@@ -1,4 +1,5 @@
 import userModel from "../models/userModel.js";
+import townhallModel from "../models/townHall.js";
 import productModel from "../models/productModel.js";
 import axios from "axios";
 import FormData from "form-data";
@@ -89,6 +90,7 @@ export const createProduct = async (req, res) => {
       price,
       badge,
       description,
+      townHall,
       createdBy,
       maxSell,
       seasonStartDate,
@@ -102,6 +104,7 @@ export const createProduct = async (req, res) => {
       price,
       badge,
       description,
+      townHall,
       links,
       productImage,
       createdBy,
@@ -192,6 +195,7 @@ export const updateBase = async (req, res) => {
       price,
       badge,
       description,
+      townHall,
       links,
       productImage,
       maxSell,
@@ -248,6 +252,7 @@ export const updateBase = async (req, res) => {
         price,
         badge,
         description,
+        townHall,
         links: parsedLinks,
         productImage,
         maxSell,
@@ -305,6 +310,24 @@ export const deleteBase = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+//get townHall List for search suggestion
+export const getTownHalls = async (req, res) => {
+  try {
+    const townHall = await townhallModel.find();
+
+    res.json({
+      success: true,
+      messsage: "TownHall Fetched Successfully",
+      townHall,
+    });
+  } catch (error) {
+    res.json({
       success: false,
       message: error.message,
     });

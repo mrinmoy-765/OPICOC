@@ -32,6 +32,7 @@ const CreateBases = () => {
       formData.append("price", data.price);
       formData.append("badge", data.badge);
       formData.append("description", data.description);
+      formData.append("townHall", data.townHall);
       formData.append("maxSell", data.maxSell);
       formData.append("seasonStartDate", data.seasonStartDate);
       formData.append("seasonEndDate", data.seasonEndDate);
@@ -99,6 +100,14 @@ const CreateBases = () => {
           type="text"
           placeholder="Badge : 1 X 5"
           {...register("badge", { required: true })}
+          className="input input-bordered w-full"
+        />
+
+        {/* Town Hall */}
+        <input
+          type="text"
+          placeholder="Ex. Town Hall 15"
+          {...register("townHall", { required: true })}
           className="input input-bordered w-full"
         />
 

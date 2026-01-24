@@ -48,7 +48,9 @@ const CartPage = () => {
                       alt=""
                       className="w-20 h-14 object-cover rounded"
                     />
-                    <td className="px-4 py-3">{item.title}</td>
+                    <td className="px-4 py-3 lg:text-lg md:text-lg text-sm">
+                      {item.title}
+                    </td>
                     <td className="px-4 py-3">${item.price}</td>
                     <td className="px-4 py-3 text-center">
                       <button

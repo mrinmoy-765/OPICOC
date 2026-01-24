@@ -1,16 +1,23 @@
 import React, { useState, useEffect, useMemo } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import BaseListTable from "./BaseListTable";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { useRef } from "react";
 
 const GetAllBases = () => {
   const [bases, setBases] = useState([]);
+  const [townHall, setTownHall] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const inputRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   const AxiosSecure = useAxiosSecure();
+  const AxiosPublic = useAxiosPublic();
 
   // Fetch bases ONCE
   useEffect(() => {
@@ -29,6 +36,22 @@ const GetAllBases = () => {
     fetchBases();
   }, [AxiosSecure]);
 
+  // Fetch Townhall for search suggestion
+  useEffect(() => {
+    const fetchTownHalls = async () => {
+      try {
+        setLoading(true);
+        const res = await AxiosPublic.get("/admin/get-townHall");
+        setTownHall(res.data.townHall || []);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTownHalls();
+  }, [AxiosPublic]);
+
   // Memoized search (prevents unnecessary re-renders)
   const filteredBases = useMemo(() => {
     return bases.filter((base) => {
@@ -36,7 +59,7 @@ const GetAllBases = () => {
         ? base.links.map((link) => `${link.label} ${link.url}`).join(" ")
         : "";
 
-      return `${base.title} ${base.price} ${linksText}`
+      return `${base.title} ${base.price} ${base.townHall} ${linksText}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
     });
@@ -59,7 +82,7 @@ const GetAllBases = () => {
             Swal.fire(
               "Deleted!",
               "Base has been removed successfully.",
-              "success"
+              "success",
             );
             setBases(bases.filter((base) => base._id !== baseId));
           } else {
@@ -69,6 +92,38 @@ const GetAllBases = () => {
       }
     });
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target) &&
+        !inputRef.current.contains(e.target)
+      ) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Filter townhall suggestions based on searchTerm
+  const townHallSuggestions = useMemo(() => {
+    if (!searchTerm) return [];
+
+    console.log("townHall data:", townHall);
+    console.log("searchTerm:", searchTerm);
+
+    const suggestions = townHall
+      .flatMap((item) =>
+        item.townhalls ? item.townhalls.split(",").map((th) => th.trim()) : [],
+      )
+      .filter((name) => name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    console.log("townHallSuggestions:", suggestions);
+    return suggestions;
+  }, [searchTerm, townHall]);
 
   if (loading) return <p>Loading...</p>;
 
@@ -94,13 +149,41 @@ const GetAllBases = () => {
         </div>
 
         {/* Search */}
-        <input
-          type="text"
-          placeholder="Search bases by title,  label & links"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="input input-bordered w-full sm:max-w-sm"
-        />
+        <div className="relative w-full sm:max-w-sm">
+          <input
+            ref={inputRef}
+            type="text"
+            placeholder="Search by title, link, price, town hall"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+              setShowSuggestions(true);
+            }}
+            onFocus={() => setShowSuggestions(true)}
+            className="input input-bordered w-full"
+            autoComplete="off"
+          />
+
+          {showSuggestions && townHallSuggestions.length > 0 && (
+            <ul
+              ref={dropdownRef}
+              className="absolute z-50 mt-1 w-full rounded-lg border border-gray-200 bg-white shadow-lg max-h-48 overflow-y-auto"
+            >
+              {townHallSuggestions.map((suggestion, idx) => (
+                <li
+                  key={idx}
+                  className="px-4 py-2 cursor-pointer hover:bg-amber-100 transition text-sm"
+                  onClick={() => {
+                    setSearchTerm(suggestion);
+                    setShowSuggestions(false);
+                  }}
+                >
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
 
       {/* Results */}

@@ -7,14 +7,14 @@ const BaseListTable = ({ bases = [], onDelete }) => {
   const itemsPerPage = 10;
   const safeCurrentPage = Math.min(
     currentPage,
-    Math.max(1, Math.ceil(bases.length / itemsPerPage))
+    Math.max(1, Math.ceil(bases.length / itemsPerPage)),
   );
 
   const totalPages = Math.ceil(bases.length / itemsPerPage);
 
   const paginatedBases = bases.slice(
     (safeCurrentPage - 1) * itemsPerPage,
-    safeCurrentPage * itemsPerPage
+    safeCurrentPage * itemsPerPage,
   );
 
   const getPages = () => {
@@ -31,7 +31,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
           totalPages - 3,
           totalPages - 2,
           totalPages - 1,
-          totalPages
+          totalPages,
         );
       } else {
         pages.push(
@@ -41,7 +41,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
           currentPage,
           currentPage + 1,
           "...",
-          totalPages
+          totalPages,
         );
       }
     }
@@ -57,7 +57,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
             <th className="text-center">Title</th>
             <th className="text-center">Price</th>
             <th className="text-center">Badge</th>
-            <th className="text-center">Description</th>
+            <th className="text-center">Town Hall</th>
             <th className="text-center">Labels & Links</th>
             <th className="text-center">Created</th>
             <th className="text-center">Actions</th>
@@ -78,7 +78,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
               <td>{base?.title}</td>
               <td>${base?.price}</td>
               <td>{base?.badge}</td>
-              <td className="max-w-xs truncate">{base?.description}</td>
+              <td className="max-w-xs truncate">{base?.townHall}</td>
 
               {/* Links column */}
               <td>

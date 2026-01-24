@@ -8,6 +8,7 @@ import {
   getSpecificBase,
   updateBase,
   deleteBase,
+  getTownHalls,
 } from "../controllers/adminController.js";
 import adminAuth from "../middleware/adminAuth.js";
 
@@ -34,5 +35,5 @@ adminRouter.post(
   upload.single("productImage"),
   createProduct,
 );
-
+adminRouter.get("/get-townHall", getTownHalls);
 export default adminRouter;

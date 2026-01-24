@@ -18,6 +18,7 @@ const EditBase = () => {
     title: "",
     price: "",
     description: "",
+    townHall: "",
     maxSell: "",
     seasonStartDate: "",
     seasonEndDate: "",
@@ -38,6 +39,7 @@ const EditBase = () => {
             ? String(base.price)
             : "",
         description: base.description || "",
+        townHall: base.townHall || "",
         productImage: base.productImage || "",
         createdBy: base.createdBy || "",
         createdAt: base.createdAt || "",
@@ -114,6 +116,7 @@ const EditBase = () => {
         formData.price === "" ? 0 : parseFloat(formData.price),
       );
       formDataToSend.append("description", formData.description);
+      formDataToSend.append("townHall", formData.townHall);
       formDataToSend.append(
         "maxSell",
         formData.maxSell === "" ? 0 : parseFloat(formData.maxSell),
@@ -244,6 +247,24 @@ const EditBase = () => {
               rows={4}
             />
             <CiEdit className="text-2xl  cursor-pointer" />
+          </div>
+        </label>
+
+        {/* Town Hall */}
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text font-semibold">Town Hall</span>
+          </div>
+          <div className="flex justify-center items-center gap-2.5 mb-5">
+            <input
+              name="townHall"
+              value={formData.townHall}
+              onChange={handleChange}
+              placeholder="Town Hall"
+              className="input input-bordered input-warning w-full "
+              required
+            />
+            <CiEdit className="text-2xl cursor-pointer" />
           </div>
         </label>
 
