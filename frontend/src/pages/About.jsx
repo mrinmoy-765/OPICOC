@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { toast } from "react-toastify";
+import Spinner from "../components/Spinner";
 
 const About = () => {
   const AxiosPublic = useAxiosPublic();
@@ -24,7 +25,7 @@ const About = () => {
 
     fetchAbout();
   }, [AxiosPublic]);
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
   return (
     <div>
       <h1 className="lg:text-4xl md:text-2xl text-xl font-semibold font-clash ml-5 mt-2">

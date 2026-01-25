@@ -4,6 +4,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import { useAuth } from "../../AuthProvider/AuthContext";
 import { CiEdit } from "react-icons/ci";
+import Spinner from "../../components/Spinner";
 
 const EditBase = () => {
   const { id } = useParams();
@@ -163,7 +164,7 @@ const EditBase = () => {
     }
   };
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6">

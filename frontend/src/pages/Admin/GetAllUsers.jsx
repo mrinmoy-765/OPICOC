@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import UserListTable from "./UserListTable";
 import { Link } from "react-router-dom";
+import Spinner from "../../components/Spinner";
 
 const GetAllUsers = () => {
   const [users, setUsers] = useState([]);
@@ -32,11 +33,11 @@ const GetAllUsers = () => {
     return users.filter((user) =>
       `${user.FirstName} ${user.LastName} ${user.email}`
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase()),
     );
   }, [users, searchTerm]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="my-7 px-4 sm:px-6 lg:px-8">

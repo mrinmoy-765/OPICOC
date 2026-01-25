@@ -4,6 +4,7 @@ import { useAuth } from "../../AuthProvider/AuthContext";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Spinner from "../../components/Spinner";
 
 const AdminDashboard = () => {
   const [unreadCount, setUnreadCount] = useState();
@@ -28,7 +29,7 @@ const AdminDashboard = () => {
 
     fetchUsers();
   }, [AxiosSecure]);
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
   return (
     <div className="my-3.5">
       <div className="badge badge-soft badge-success text-start">

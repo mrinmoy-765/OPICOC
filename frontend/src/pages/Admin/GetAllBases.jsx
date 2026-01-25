@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { useRef } from "react";
+import Spinner from "../../components/Spinner";
 
 const GetAllBases = () => {
   const [bases, setBases] = useState([]);
@@ -125,7 +126,7 @@ const GetAllBases = () => {
     return suggestions;
   }, [searchTerm, townHall]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="my-7 px-4 sm:px-6 lg:px-8">

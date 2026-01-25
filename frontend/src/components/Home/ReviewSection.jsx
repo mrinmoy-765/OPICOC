@@ -7,6 +7,7 @@ import defaultDP from "../../assets/profile-icon.png";
 import { useAuth } from "../../AuthProvider/AuthContext";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Spinner from "../Spinner";
 
 const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -77,7 +78,7 @@ const ReviewSection = () => {
   };
 
   if (loading) {
-    return "Loading....";
+    <Spinner></Spinner>;
   }
   return (
     <div className="bg-[#1d1d1d] py-10">

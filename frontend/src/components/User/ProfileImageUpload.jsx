@@ -16,7 +16,7 @@ const ProfileImageUpload = ({ refetch, setPreview }) => {
 
       const res = await AxiosSecure.post(
         "/user/upload-profile-image",
-        formData
+        formData,
       );
 
       if (!res.data.success) {
@@ -27,7 +27,7 @@ const ProfileImageUpload = ({ refetch, setPreview }) => {
       toast.success("Profile image updated");
       reset();
       refetch();
-      setPreview(null); // clear preview after upload
+      setPreview(null);
     } catch (error) {
       toast.error(error.message || "Upload failed");
     }

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner";
 
 const AboutList = () => {
   const AxiosSecure = useAxiosSecure();
@@ -56,7 +57,7 @@ const AboutList = () => {
     });
   };
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 my-6">

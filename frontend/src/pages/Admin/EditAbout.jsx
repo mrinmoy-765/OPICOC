@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner";
 
 const EditAbout = () => {
   const { id } = useParams(); // about id
@@ -68,7 +69,7 @@ const EditAbout = () => {
     }
   };
 
-  if (loading) return <p className="text-center py-10">Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 my-10">

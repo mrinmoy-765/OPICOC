@@ -410,7 +410,6 @@ export const getSpecificAbout = async (req, res) => {
 
 export const updateAbout = async (req, res) => {
   try {
-    console.log("HIT");
     const { id } = req.params;
 
     if (!id) {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import ReplyModal from "./ReplyModal";
 import { BsFillBookmarkCheckFill } from "react-icons/bs";
+import Spinner from "../../components/Spinner";
 
 const AdminContactMessages = () => {
   const AxiosSecure = useAxiosSecure();
@@ -84,7 +85,7 @@ const AdminContactMessages = () => {
     }
   };
 
-  if (loading) return <p className="text-center">Loading messages...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="p-6">

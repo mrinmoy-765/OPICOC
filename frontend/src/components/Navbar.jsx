@@ -9,9 +9,7 @@ import NavigationDrawer from "./Drawer";
 import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthContext";
 import { useCart } from "../context/CartContext";
-//import useAxiosPublic from "../hooks/useAxiosPublic";
-// import { toast } from "react-toastify";
-// import { useQueryClient } from "@tanstack/react-query";
+import Spinner from "./Spinner";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -23,11 +21,7 @@ const Navbar = () => {
 
   //if (isLoading) return null;
   if (isLoading) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
-    );
+    return <Spinner></Spinner>;
   }
 
   return (

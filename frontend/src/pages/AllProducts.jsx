@@ -4,6 +4,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useCart } from "../context/CartContext";
 import { GiPowerLightning } from "react-icons/gi";
 import { useRef } from "react";
+import Spinner from "../components/Spinner";
 
 const AllProducts = () => {
   const AxiosPublic = useAxiosPublic();
@@ -141,7 +142,7 @@ const AllProducts = () => {
   };
 
   if (loading) {
-    return "loading....";
+    return <Spinner></Spinner>;
   }
 
   return (

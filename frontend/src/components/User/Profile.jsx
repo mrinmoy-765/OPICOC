@@ -6,6 +6,7 @@ import ChangePassword from "./ChangePassword";
 import ProfileImageUpload from "./ProfileImageUpload";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../AuthProvider/AuthContext";
+import Spinner from "../Spinner";
 
 const Profile = () => {
   const AxiosSecure = useAxiosSecure();
@@ -22,7 +23,7 @@ const Profile = () => {
     },
   });
 
-  if (isPending) return <p>Loading...</p>;
+  if (isPending) return <Spinner></Spinner>;
   if (error) return <p>Failed to load profile</p>;
 
   const imageSrc = preview || data?.image;

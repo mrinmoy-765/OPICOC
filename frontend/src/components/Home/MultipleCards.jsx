@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
+import Spinner from "../Spinner";
 
 const MultipleCards = () => {
   const [bases, setBases] = useState([]);
@@ -28,7 +29,7 @@ const MultipleCards = () => {
   }, [AxiosPublic]);
 
   if (loading) {
-    return "loading....";
+    <Spinner></Spinner>;
   }
   return (
     <div className="bg-[#1d1d1d] md:px-10 lg:px-12 px-5">

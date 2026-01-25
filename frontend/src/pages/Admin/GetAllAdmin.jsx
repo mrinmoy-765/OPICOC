@@ -3,6 +3,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import AdminListTable from "./AdminListTable";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner";
 
 const GetAllAdmin = () => {
   const [users, setUsers] = useState([]);
@@ -34,11 +35,11 @@ const GetAllAdmin = () => {
     return users.filter((user) =>
       `${user.FirstName} ${user.LastName} ${user.email}`
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .includes(searchTerm.toLowerCase()),
     );
   }, [users, searchTerm]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner></Spinner>;
 
   return (
     <div className="my-7 px-4 sm:px-6 lg:px-8">
