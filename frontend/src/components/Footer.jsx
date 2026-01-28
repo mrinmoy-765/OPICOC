@@ -92,12 +92,48 @@ const Footer = () => {
       <footer className="footer bg-transparent text-white  px-10 py-4">
         <nav className="md:place-self-center md:justify-self-end">
           <div className="grid grid-flow-col gap-4">
-            <AiOutlineYoutube className={iconStyle} />
-            <PiDiscordLogoLight className={iconStyle} />
-            <BsTwitterX className={iconStyle} />
-            <IoLogoFacebook className={iconStyle} />
-            <AiFillInstagram className={iconStyle} />
-            <FiTwitch className={iconStyle} />
+            <a
+              href="https://www.youtube.com/@Opi333coc"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <AiOutlineYoutube className={iconStyle} />
+            </a>
+            <a
+              href="https://discord.gg/GfwZjJjUe"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <PiDiscordLogoLight className={iconStyle} />
+            </a>
+            <a
+              href="https://x.com/OpOpib17?t=9NyAI1oSbQvxoPBbua2aCg&s=09"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <BsTwitterX className={iconStyle} />
+            </a>
+            <a
+              href="https://www.facebook.com/share/17TREB27rL/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IoLogoFacebook className={iconStyle} />
+            </a>
+            <a
+              href="https://www.instagram.com/opi333coc/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <AiFillInstagram className={iconStyle} />
+            </a>
+            <a
+              href="https://m.twitch.tv/opi_333"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FiTwitch className={iconStyle} />
+            </a>
           </div>
         </nav>
       </footer>

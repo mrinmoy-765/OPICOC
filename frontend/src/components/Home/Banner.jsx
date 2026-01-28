@@ -8,11 +8,8 @@ import { BsTwitterX } from "react-icons/bs";
 import { IoLogoFacebook } from "react-icons/io5";
 import { FiTwitch } from "react-icons/fi";
 import Slider from "react-slick";
-
-// IMPORTANT: slick styles (must be imported once globally)
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 const iconStyle =
   "lg:w-10 lg:h-10 md:w-8 md:h-8 w-5 h-5 lg:p-1.5 md:p-2 p-1 text-white lg:border-2 border border-white rounded-full hover:bg-white hover:text-black transition";
 
@@ -58,12 +55,48 @@ const Banner = () => {
           p-2
         "
       >
-        <AiOutlineYoutube className={iconStyle} />
-        <PiDiscordLogoLight className={iconStyle} />
-        <BsTwitterX className={iconStyle} />
-        <IoLogoFacebook className={iconStyle} />
-        <AiFillInstagram className={iconStyle} />
-        <FiTwitch className={iconStyle} />
+        <a
+          href="https://www.youtube.com/@Opi333coc"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <AiOutlineYoutube className={iconStyle} />
+        </a>
+        <a
+          href="https://discord.gg/GfwZjJjUe"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <PiDiscordLogoLight className={iconStyle} />
+        </a>
+        <a
+          href="https://x.com/OpOpib17?t=9NyAI1oSbQvxoPBbua2aCg&s=09"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <BsTwitterX className={iconStyle} />
+        </a>
+        <a
+          href="https://www.facebook.com/share/17TREB27rL/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <IoLogoFacebook className={iconStyle} />
+        </a>
+        <a
+          href="https://www.instagram.com/opi333coc/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <AiFillInstagram className={iconStyle} />
+        </a>
+        <a
+          href="https://m.twitch.tv/opi_333"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FiTwitch className={iconStyle} />
+        </a>
       </div>
     </div>
   );
