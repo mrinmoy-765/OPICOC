@@ -24,6 +24,9 @@ import AboutList from "../pages/Admin/AboutList";
 import CreateAboutForm from "../pages/Admin/createAboutForm";
 import EditAbout from "../pages/Admin/EditAbout";
 import About from "../pages/About";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import NotFound from "../components/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -36,31 +39,59 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/adminDashboard",
-        element: <AdminDashboard></AdminDashboard>,
+        element: (
+          <AdminRoute>
+            <AdminDashboard></AdminDashboard>
+          </AdminRoute>
+        ),
       },
       {
         path: "getAllUsers",
-        element: <GetAllUsers></GetAllUsers>,
+        element: (
+          <AdminRoute>
+            <GetAllUsers></GetAllUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: "getAllAdmins",
-        element: <GetAllAdmin></GetAllAdmin>,
+        element: (
+          <AdminRoute>
+            <GetAllAdmin></GetAllAdmin>
+          </AdminRoute>
+        ),
       },
       {
         path: "create-bases",
-        element: <CreateBases></CreateBases>,
+        element: (
+          <AdminRoute>
+            <CreateBases></CreateBases>
+          </AdminRoute>
+        ),
       },
       {
         path: "get-bases",
-        element: <GetAllBases></GetAllBases>,
+        element: (
+          <AdminRoute>
+            <GetAllBases></GetAllBases>
+          </AdminRoute>
+        ),
       },
       {
         path: "admin/edit-base/:id",
-        element: <EditBase></EditBase>,
+        element: (
+          <AdminRoute>
+            <EditBase></EditBase>
+          </AdminRoute>
+        ),
       },
       {
         path: "/all-products",
@@ -88,19 +119,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact-messages",
-        element: <AdminContactMessages></AdminContactMessages>,
+        element: (
+          <AdminRoute>
+            <AdminContactMessages></AdminContactMessages>
+          </AdminRoute>
+        ),
       },
       {
         path: "/about-list",
-        element: <AboutList></AboutList>,
+        element: (
+          <AdminRoute>
+            <AboutList></AboutList>
+          </AdminRoute>
+        ),
       },
       {
         path: "/create-about",
-        element: <CreateAboutForm></CreateAboutForm>,
+        element: (
+          <AdminRoute>
+            <CreateAboutForm></CreateAboutForm>
+          </AdminRoute>
+        ),
       },
       {
         path: "/edit-about/:id",
-        element: <EditAbout></EditAbout>,
+        element: (
+          <AdminRoute>
+            <EditAbout></EditAbout>
+          </AdminRoute>
+        ),
       },
       {
         path: "/about",
@@ -123,6 +170,10 @@ const router = createBrowserRouter([
   {
     path: "reset-password",
     element: <ResetPassword></ResetPassword>,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

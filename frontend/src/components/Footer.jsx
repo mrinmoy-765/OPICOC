@@ -105,7 +105,7 @@ const Footer = () => {
         <Link to="/terms-conditions" className="hover:underline">
           Terms & Conditions
         </Link>
-        <div>© 2025 Copyright by Opicoc</div>
+        <div>© {new Date().getFullYear()} Copyright by Opicoc</div>
         <Link to="/privacy-policy" className="hover:underline">
           Privacy Policy
         </Link>
