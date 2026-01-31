@@ -57,10 +57,7 @@ const ChangePassword = () => {
       <form onSubmit={handleSubmit}>
         {/* current password */}
         <div class="sm:col-span-4">
-          <label
-            for="current-password"
-            class="block text-sm/6 font-medium text-gray-900"
-          >
+          <label for="current-password" class="block text-sm/6 font-medium">
             Current Password
           </label>
           <div class="mt-2">
@@ -76,10 +73,7 @@ const ChangePassword = () => {
 
         {/* New Password */}
         <div class="sm:col-span-4">
-          <label
-            for="new-password"
-            class="block text-sm/6 font-medium text-gray-900"
-          >
+          <label for="new-password" class="block text-sm/6 font-medium">
             New Password
           </label>
           <div class="mt-2">
@@ -95,10 +89,7 @@ const ChangePassword = () => {
 
         {/* Confirm password */}
         <div class="sm:col-span-4">
-          <label
-            for="confirm-password"
-            class="block text-sm/6 font-medium text-gray-900"
-          >
+          <label for="confirm-password" class="block text-sm/6 font-medium">
             Confirm Password
           </label>
           <div class="mt-2">

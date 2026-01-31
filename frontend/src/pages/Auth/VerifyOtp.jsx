@@ -13,19 +13,31 @@ const VerifyOtp = () => {
   const [otp, setOtp] = useState("");
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(OTP_EXPIRY_TIME);
+  const [isTabVisible, setIsTabVisible] = useState(true);
 
   const AxiosPublic = useAxiosPublic();
 
+  // Handle tab visibility to prevent auto-refresh
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      setIsTabVisible(!document.hidden);
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
   //  Countdown Timer
   useEffect(() => {
-    if (timeLeft <= 0) return;
+    if (timeLeft <= 0 || !isTabVisible) return;
 
     const interval = setInterval(() => {
       setTimeLeft((prev) => prev - 1);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timeLeft]);
+  }, [timeLeft, isTabVisible]);
 
   // Format mm:ss
   const formatTime = () => {
@@ -33,7 +45,7 @@ const VerifyOtp = () => {
     const seconds = timeLeft % 60;
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
       2,
-      "0"
+      "0",
     )}`;
   };
 
@@ -67,21 +79,23 @@ const VerifyOtp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-gray-100 dark:bg-gray-900">
       <form
         onSubmit={handleVerify}
-        className="w-full max-w-sm bg-white p-6 rounded-xl shadow"
+        className="w-full max-w-sm bg-white dark:bg-gray-800 p-6 rounded-xl shadow"
       >
-        <h2 className="text-xl font-semibold mb-1">Verify Email</h2>
+        <h2 className="text-xl font-semibold mb-1 text-black dark:text-white">
+          Verify Email
+        </h2>
 
-        <p className="text-sm text-gray-600 mb-3">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
           We sent an OTP to <b>{email}</b>
         </p>
 
         {/* TIMER */}
         <p
           className={`text-sm mb-4 ${
-            timeLeft <= 30 ? "text-red-500" : "text-gray-500"
+            timeLeft <= 30 ? "text-red-500" : "text-gray-600 dark:text-gray-400"
           }`}
         >
           OTP Expires in <b>{formatTime()}</b>
@@ -93,7 +107,7 @@ const VerifyOtp = () => {
           value={otp}
           onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
           placeholder="Enter 6-digit OTP"
-          className="w-full border px-3 py-2 rounded mb-4 text-center tracking-widest text-lg"
+          className="w-full border border-gray-300 dark:border-gray-600 px-3 py-2 rounded mb-4 text-center tracking-widest text-lg text-black dark:text-white bg-white dark:bg-gray-700"
           required
         />
 
@@ -111,7 +125,7 @@ const VerifyOtp = () => {
 
         {/* RESEND PLACEHOLDER */}
         {timeLeft <= 0 && (
-          <p className="text-center text-sm mt-4 text-red-500">
+          <p className="text-center text-sm mt-4 text-red-500 dark:text-red-400">
             OTP expired. Please try again.
           </p>
         )}

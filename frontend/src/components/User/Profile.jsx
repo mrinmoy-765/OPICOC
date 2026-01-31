@@ -6,6 +6,7 @@ import ChangePassword from "./ChangePassword";
 import ProfileImageUpload from "./ProfileImageUpload";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../AuthProvider/AuthContext";
+import defaultImage from "../../assets/profile-icon.png";
 import Spinner from "../Spinner";
 
 const Profile = () => {
@@ -26,7 +27,7 @@ const Profile = () => {
   if (isPending) return <Spinner></Spinner>;
   if (error) return <p>Failed to load profile</p>;
 
-  const imageSrc = preview || data?.image;
+  const imageSrc = preview || data?.image || defaultImage;
 
   return (
     <div className="lg:flex py-5">

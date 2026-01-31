@@ -6,7 +6,7 @@ const UserListTable = ({ users }) => {
   const itemsPerPage = 10;
   const safeCurrentPage = Math.min(
     currentPage,
-    Math.max(1, Math.ceil(users.length / itemsPerPage))
+    Math.max(1, Math.ceil(users.length / itemsPerPage)),
   );
 
   const totalPages = Math.ceil(users.length / itemsPerPage);
@@ -14,7 +14,7 @@ const UserListTable = ({ users }) => {
   // Slice bookings for current page
   const paginatedUsers = users.slice(
     (safeCurrentPage - 1) * itemsPerPage,
-    safeCurrentPage * itemsPerPage
+    safeCurrentPage * itemsPerPage,
   );
 
   const getPages = () => {
@@ -31,7 +31,7 @@ const UserListTable = ({ users }) => {
           totalPages - 3,
           totalPages - 2,
           totalPages - 1,
-          totalPages
+          totalPages,
         );
       } else {
         pages.push(
@@ -41,7 +41,7 @@ const UserListTable = ({ users }) => {
           currentPage,
           currentPage + 1,
           "...",
-          totalPages
+          totalPages,
         );
       }
     }
@@ -65,6 +65,7 @@ const UserListTable = ({ users }) => {
               <td className="p-2">
                 <img
                   src={user?.image || defaultDP}
+                  loading="lazy"
                   alt=""
                   className="w-20 h-14 object-cover rounded"
                 />

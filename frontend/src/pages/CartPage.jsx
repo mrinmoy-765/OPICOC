@@ -45,6 +45,7 @@ const CartPage = () => {
                   <tr key={item._id} className="hover:bg-[#2c3947]">
                     <img
                       src={item.productImage}
+                      loading="lazy"
                       alt=""
                       className="w-20 h-14 object-cover rounded"
                     />

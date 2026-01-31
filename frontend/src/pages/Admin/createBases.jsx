@@ -67,7 +67,7 @@ const CreateBases = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow">
+    <div className="max-w-4xl mx-auto  p-8 rounded-lg shadow">
       <h1 className="text-3xl font-bold mb-6">Create Product</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

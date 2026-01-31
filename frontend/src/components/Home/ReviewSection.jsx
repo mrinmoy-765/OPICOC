@@ -95,6 +95,7 @@ const ReviewSection = () => {
                   {d.reviewImage && (
                     <img
                       src={d.reviewImage}
+                      loading="lazy"
                       alt="review product"
                       className="w-full h-48 sm:h-56 md:h-48 lg:h-56 object-cover"
                     />
@@ -102,8 +103,12 @@ const ReviewSection = () => {
                   <div className="p-4">
                     <div className="flex justify-between items-start">
                       <div>
-                        <h2 className="font-bold text-lg">{d.FirstName}</h2>
-                        <h2 className="font-bold text-lg">{d.LastName}</h2>
+                        <h2 className="font-bold text-lg dark:text-black">
+                          {d.FirstName}
+                        </h2>
+                        <h2 className="font-bold text-lg dark:text-black">
+                          {d.LastName}
+                        </h2>
                         <p className="text-gray-500 text-sm">
                           {new Date(d.createdAt).toLocaleString("en-GB", {
                             day: "2-digit",
@@ -120,6 +125,7 @@ const ReviewSection = () => {
                     <div className="flex items-center gap-3 mt-4">
                       <img
                         src={d?.userImage || defaultDP}
+                        loading="lazy"
                         alt="user"
                         className="w-10 h-10 rounded-full object-cover"
                       />

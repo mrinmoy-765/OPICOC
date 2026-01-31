@@ -1,8 +1,4 @@
 import React from "react";
-import TownHall18 from "../../assets/TH18.png";
-import TownHall17 from "../../assets/TH 17.png";
-import TownHall16 from "../../assets/TH16.png";
-import TownHall15 from "../../assets/TH 15.png";
 import { Link } from "react-router-dom";
 
 const TownHalls = () => {
@@ -14,18 +10,12 @@ const TownHalls = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/* th 1 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
-            <img
-              src={TownHall18}
-              alt="town hall"
-              className="w-[286px] h-[286px]"
-            />
-          </figure> */}
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
               <img
-                src={TownHall18}
+                src="https://iili.io/fsYiZAB.webp"
+                loading="lazy"
                 alt="3D card"
                 className="w-[286px] h-[286px]"
               />
@@ -46,23 +36,17 @@ const TownHalls = () => {
         </div>
         {/* th 2 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
-            <img
-              src={TownHall17}
-              alt="town hall"
-              className="w-[286px] h-[286px]"
-            />
-          </figure> */}
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
               <img
-                src={TownHall17}
+                src="https://iili.io/fsYitwP.webp"
+                loading="lazy"
                 alt="3D card"
                 className="w-[286px] h-[286px]"
               />
             </figure>
-            {/* 8 empty divs needed for the 3D effect */}
+
             <div></div>
             <div></div>
             <div></div>
@@ -78,23 +62,17 @@ const TownHalls = () => {
         </div>
         {/* th 3 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
-            <img
-              src={TownHall16}
-              alt="town hall"
-              className="w-[286px] h-[286px]"
-            />
-          </figure> */}
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
               <img
-                src={TownHall16}
+                src="https://iili.io/fsYsFAN.webp"
+                loading="lazy"
                 alt="3D card"
                 className="w-[286px] h-[286px]"
               />
             </figure>
-            {/* 8 empty divs needed for the 3D effect */}
+
             <div></div>
             <div></div>
             <div></div>
@@ -111,23 +89,16 @@ const TownHalls = () => {
         </div>
         {/* th 4 */}
         <div className="card bg-[#1d1d1d] w-auto">
-          {/* <figure className="px-10 pt-10 bg-[#1d1d1d]">
-            <img
-              src={TownHall15}
-              alt="town hall"
-              className="w-[286px] h-[286px]"
-            />
-          </figure> */}
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
               <img
-                src={TownHall15}
+                src="https://iili.io/fsYWdzP.webp"
+                loading="lazy"
                 alt="3D card"
                 className="w-[286px] h-[286px]"
               />
             </figure>
-            {/* 8 empty divs needed for the 3D effect */}
             <div></div>
             <div></div>
             <div></div>

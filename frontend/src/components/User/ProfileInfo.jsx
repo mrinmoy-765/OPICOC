@@ -93,10 +93,7 @@ const ProfileInfo = ({ user }) => {
         {/* first & last name section */}
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label
-              for="first-name"
-              class="block text-sm/6 font-medium text-gray-900"
-            >
+            <label for="first-name" class="block text-sm/6 font-medium ">
               First name
             </label>
             <div class="mt-2">
@@ -122,10 +119,7 @@ const ProfileInfo = ({ user }) => {
           </div>
 
           <div class="sm:col-span-3">
-            <label
-              for="last-name"
-              class="block text-sm/6 font-medium text-gray-900"
-            >
+            <label for="last-name" class="block text-sm/6 font-medium">
               Last name
             </label>
             <div class="mt-2">
@@ -153,10 +147,7 @@ const ProfileInfo = ({ user }) => {
         {/* email phone */}
         <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label
-              for="email"
-              class="block text-sm/6 font-medium text-gray-900"
-            >
+            <label for="email" class="block text-sm/6 font-medium">
               Email
             </label>
             <div class="mt-2">
@@ -171,10 +162,7 @@ const ProfileInfo = ({ user }) => {
           </div>
 
           <div class="sm:col-span-3">
-            <label
-              for="phone"
-              class="block text-sm/6 font-medium text-gray-900"
-            >
+            <label for="phone" class="block text-sm/6 font-medium">
               Phone Number
             </label>
             <div className="mt-2">
@@ -214,10 +202,7 @@ const ProfileInfo = ({ user }) => {
         {/* address country */}
         <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label
-              for="address"
-              class="block text-sm/6 font-medium text-gray-900"
-            >
+            <label for="address" class="block text-sm/6 font-medium">
               Address
             </label>
             <div class="mt-2">
@@ -233,10 +218,7 @@ const ProfileInfo = ({ user }) => {
           </div>
 
           <div class="sm:col-span-3">
-            <label
-              for="country"
-              class="block text-sm/6 font-medium text-gray-900"
-            >
+            <label for="country" class="block text-sm/6 font-medium">
               Country
             </label>
             <div class="mt-2">
@@ -263,7 +245,7 @@ const ProfileInfo = ({ user }) => {
         {/* city zip code */}
         <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label for="city" class="block text-sm/6 font-medium text-gray-900">
+            <label for="city" class="block text-sm/6 font-medium">
               City
             </label>
             <div class="mt-2">
@@ -287,10 +269,7 @@ const ProfileInfo = ({ user }) => {
           </div>
 
           <div class="sm:col-span-3">
-            <label
-              for="zip-code"
-              class="block text-sm/6 font-medium text-gray-900"
-            >
+            <label for="zip-code" class="block text-sm/6 font-medium">
               Zip Code
             </label>
             <div class="mt-2">

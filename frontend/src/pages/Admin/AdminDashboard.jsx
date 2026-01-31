@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Legend from "../../assets/Legend.png";
 import { useAuth } from "../../AuthProvider/AuthContext";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -45,7 +44,12 @@ const AdminDashboard = () => {
           Opicoc
         </span>
 
-        <img src={Legend} alt="" className="w-[100px] h-[100px]" />
+        <img
+          src="https://iili.io/f6mQgA7.png"
+          loading="lazy"
+          alt=""
+          className="w-[100px] h-[100px]"
+        />
       </div>
 
       {/* Links */}

@@ -170,7 +170,7 @@ const EditBase = () => {
     <div className="max-w-3xl mx-auto px-4 py-6">
       <h2 className="text-2xl font-bold mb-6">Edit Base</h2>
 
-      <img src={formData.productImage} alt="" />
+      <img src={formData.productImage} loading="lazy" alt="" />
 
       <form onSubmit={handleSubmit} className="space-y-5 mt-2">
         {/* Product Image Upload */}

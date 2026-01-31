@@ -17,7 +17,7 @@ const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
       const exists = state.items.find(
-        (item) => item._id === action.payload._id
+        (item) => item._id === action.payload._id,
       );
       if (exists) {
         toast.warning("This item already is in Cart", {
@@ -29,7 +29,7 @@ const cartReducer = (state, action) => {
       const newItems = [...state.items, action.payload];
       const totalPrice = newItems.reduce(
         (sum, item) => sum + Number(item.price),
-        0
+        0,
       );
       toast.success("Item Added to Cart", { position: "top-center" });
       return { items: newItems, totalPrice };
@@ -37,12 +37,12 @@ const cartReducer = (state, action) => {
 
     case "REMOVE_FROM_CART": {
       const newItems = state.items.filter(
-        (item) => item._id !== action.payload
+        (item) => item._id !== action.payload,
       );
 
       const totalPrice = newItems.reduce(
         (sum, item) => sum + Number(item.price),
-        0
+        0,
       );
 
       return { items: newItems, totalPrice };
@@ -59,7 +59,7 @@ const cartReducer = (state, action) => {
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {}, getInitialState);
 
-  // 🔹 Persist cart on every change
+  // Persist cart on every change
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(state));
   }, [state]);

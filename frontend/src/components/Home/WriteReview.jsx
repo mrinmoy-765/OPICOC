@@ -89,7 +89,7 @@ const WriteReview = () => {
 
   return (
     <div className="bg-white p-5 md:p-10 rounded-lg max-w-3xl mx-auto">
-      <h1 className="text-3xl font-clash mb-4">Write a review</h1>
+      <h1 className="text-3xl font-clash mb-4 text-gray-500">Write a review</h1>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -145,6 +145,7 @@ const WriteReview = () => {
               {preview && (
                 <img
                   src={preview}
+                  loading="lazy"
                   alt="preview"
                   className="w-12 h-12 rounded object-cover border"
                 />

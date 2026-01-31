@@ -1,6 +1,4 @@
 import React from "react";
-import logo from "../../assets/Legend.png";
-import Info from "../../assets/information.png";
 
 const OwnerBanner = () => {
   return (
@@ -9,14 +7,25 @@ const OwnerBanner = () => {
         The Best Clash of Clans Base Building.
       </p>
       <div className="flex gap-1.5 items-center justify-center">
-        <img src={logo} alt="" className="w-[50px] h-[50px]" />
+        <img
+          src="https://iili.io/f6mQgA7.png"
+          loading="lazy"
+          alt=""
+          className="w-[50px] h-[50px]"
+        />
         <h1 className="text-2xl md:text-4xl lg:text-4xl font-clash text-white mt-2">
           Opicoc CoC Info
         </h1>
-        <img src={logo} alt="" className="w-[50px] h-[50px]" />
+        <img
+          src="https://iili.io/f6mQgA7.png"
+          loading="lazy"
+          alt=""
+          className="w-[50px] h-[50px]"
+        />
       </div>
       <img
-        src={Info}
+        src="https://iili.io/fsRZFdQ.jpg"
+        loading="lazy"
         alt="image not found"
         className="object-contain mt-7 lg:mt-14 md:mt-10"
       />

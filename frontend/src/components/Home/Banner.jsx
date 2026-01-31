@@ -1,7 +1,4 @@
 import React from "react";
-import BannerImage from "../../assets/Hero_Banner.png";
-import BannerIMage2 from "../../assets/wallpaperflare.com.png";
-import BannerIMage3 from "../../assets/Banner_11.png";
 import { AiOutlineYoutube, AiFillInstagram } from "react-icons/ai";
 import { PiDiscordLogoLight } from "react-icons/pi";
 import { BsTwitterX } from "react-icons/bs";
@@ -14,7 +11,11 @@ const iconStyle =
   "lg:w-10 lg:h-10 md:w-8 md:h-8 w-5 h-5 lg:p-1.5 md:p-2 p-1 text-white lg:border-2 border border-white rounded-full hover:bg-white hover:text-black transition";
 
 const Banner = () => {
-  const banners = [BannerImage, BannerIMage2, BannerIMage3];
+  const BannerImage = "https://iili.io/fsRQbm7.jpg";
+  const BannerIMage2 = "https://iili.io/fsRZK7V.jpg";
+  const BannerImage3 = "https://iili.io/fsRZchX.webp";
+
+  const banners = [BannerImage, BannerIMage2, BannerImage3];
 
   const settings = {
     dots: false,
@@ -35,6 +36,7 @@ const Banner = () => {
           <div key={index}>
             <img
               src={img}
+              loading="lazy"
               alt={`Banner ${index + 1}`}
               className="w-full h-auto object-cover"
             />

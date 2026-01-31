@@ -1,5 +1,4 @@
 import React from "react";
-import Product_Image from "../../../assets/product_img.png";
 
 const Card1 = () => {
   return (
@@ -13,19 +12,16 @@ const Card1 = () => {
       </div>
 
       {/* Card Layout */}
-      <div className="flex flex-col lg:flex-row gap-10 justify-center items-center">
+      <div className="flex flex-col lg:flex-row gap-10 justify-around items-center">
         {/* Image */}
-        {/* <div className="shrink-0">
-          <img
-            src={Product_Image}
-            alt=""
-            className="w-full max-w-[400px] md:max-w-[500px] lg:max-w-[550px] rounded-lg object-cover"
-          />
-        </div> */}
         <div className="hover-3d">
           {/* content */}
           <figure className="w-full max-w-[400px] md:max-w-[500px] lg:max-w-[550px] rounded-lg object-cover">
-            <img src={Product_Image} alt="Tailwind CSS 3D card" />
+            <img
+              src="https://iili.io/fsRZ2rx.jpg"
+              loading="lazy"
+              alt="Tailwind CSS 3D card"
+            />
           </figure>
           {/* 8 empty divs needed for the 3D effect */}
           <div></div>

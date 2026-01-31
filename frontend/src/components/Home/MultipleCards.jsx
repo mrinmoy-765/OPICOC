@@ -46,8 +46,9 @@ const MultipleCards = () => {
             <figure className="bg-[#7a7979]">
               <img
                 src={base.productImage}
+                loading="lazy"
                 alt={base.title}
-                className="w-[300px] h-[300px] object-cover"
+                className="w-full h-[300px] object-cover"
               />
             </figure>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import defaultUser from "../assets/profile-icon.png";
 import { GiHamburgerMenu } from "react-icons/gi";
-import Legend from "../assets/Legend.png";
 import { IoSearchOutline } from "react-icons/io5";
 import { FaCaretDown } from "react-icons/fa";
 import { BsCurrencyDollar } from "react-icons/bs";
@@ -48,7 +48,12 @@ const Navbar = () => {
 
         {/* Logo & Text Group */}
         <Link to="/" className="flex items-center">
-          <img src={Legend} alt="" className="w-[50px] h-[50px] lg:ml-7" />
+          <img
+            src="https://iili.io/f6mQgA7.png"
+            loading="lazy"
+            alt=""
+            className="w-[50px] h-[50px] lg:ml-7"
+          />
           <p className="font-medium font-clash text-2xl text-white ml-1.5">
             Opicoc
           </p>
@@ -181,7 +186,11 @@ const Navbar = () => {
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
-                  <img alt="Tailwind CSS Navbar component" src={user.image} />
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    loading="lazy"
+                    src={user?.image || defaultUser}
+                  />
                 </div>
               </div>
               <ul

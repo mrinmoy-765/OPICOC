@@ -205,9 +205,10 @@ const AllProducts = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 content-center">
           {paginatedBases.map((base) => (
             <div key={base._id} className="card bg-base-100 shadow-sm">
-              <figure className="bg-[#7a7979]">
+              <figure className="bg-transparent">
                 <img
                   src={base.productImage}
+                  loading="lazy"
                   alt={base.title}
                   className="w-full h-[300px] object-cover"
                 />

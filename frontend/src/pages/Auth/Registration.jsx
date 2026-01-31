@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/ClashOfClansLogo.png";
-import ElectroFire from "../../assets/Electrofire_reg.png";
 import Breaker1 from "../../assets/Breaker_3.png";
 import Breaker2 from "../../assets/Breaker_8.png";
-import Legend from "../../assets/Legend.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +38,6 @@ const Registration = () => {
         return;
       }
 
-      //  Success
       toast.success(res.data.message);
 
       navigate(`/verify-otp?email=${data.email}`);
@@ -53,10 +50,10 @@ const Registration = () => {
   };
 
   return (
-    <div className="px-6 py-4 max-w-5xl mx-auto">
+    <div className="px-6 py-4 max-w-5xl mx-auto bg-white dark:bg-gray-900 min-h-screen">
       {/* Logo */}
       <div className="flex justify-center mb-4">
-        <img src={logo} alt="logo" className="w-72 h-auto" />
+        <img src={logo} loading="lazy" alt="logo" className="w-72 h-auto" />
       </div>
 
       {/* Grid */}
@@ -64,7 +61,8 @@ const Registration = () => {
         {/* IMAGE FIRST ON SMALL DEVICES */}
         <div className="order-1 md:order-1 lg:order-2 flex justify-center">
           <img
-            src={ElectroFire}
+            src="https://iili.io/fsYiyPa.webp"
+            loading="lazy"
             alt="ElectroFire"
             className="lg:w-auto w- md:w-auto lg:h-[498px] md:h-[498px] h-auto"
           />
@@ -73,24 +71,29 @@ const Registration = () => {
         {/* FORM */}
         <div className="order-2 md:order-2 lg:order-1 md:px-12 lg:px-0 sm:px-0">
           <div className="flex items-center gap-2 mb-1">
-            <img src={Legend} alt="" className="h-8 w-8" />
-            <h1 className="font-clash text-2xl">Opicoc</h1>
+            <img
+              src="https://iili.io/f6mQgA7.png"
+              loading="lazy"
+              alt=""
+              className="h-8 w-8"
+            />
+            <h1 className="font-clash text-2xl dark:text-white">Opicoc</h1>
           </div>
 
-          <p className="text-xl font-semibold">Get Started</p>
-          <p className="text-sm text-gray-600 mb-5">
+          <p className="text-xl font-semibold dark:text-white">Get Started</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-5">
             Welcome! We're thrilled to have you
           </p>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* First Name */}
             <div>
-              <label className="block font-semibold mb-1 text-sm">
+              <label className="block font-semibold mb-1 text-sm dark:text-white">
                 First Name
               </label>
               <input
                 type="text"
-                className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200"
+                className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200 bg-white dark:bg-gray-700 text-black dark:text-white"
                 {...register("firstname", {
                   required: "First name is required",
                   pattern: {
@@ -100,7 +103,7 @@ const Registration = () => {
                 })}
               />
               {errors.firstname && (
-                <p className="text-red-500 text-xs">
+                <p className="text-red-500 text-xs dark:text-red-400">
                   {errors.firstname.message}
                 </p>
               )}
@@ -108,12 +111,12 @@ const Registration = () => {
 
             {/* Last Name */}
             <div>
-              <label className="block font-semibold mb-1 text-sm">
+              <label className="block font-semibold mb-1 text-sm dark:text-white">
                 Last Name
               </label>
               <input
                 type="lastname"
-                className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200"
+                className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200 bg-white dark:bg-gray-700 text-black dark:text-white"
                 {...register("lastname", {
                   required: "Last Name is required",
                   pattern: {
@@ -123,7 +126,7 @@ const Registration = () => {
                 })}
               />
               {errors.lastname && (
-                <p className="text-red-500 text-xs">
+                <p className="text-red-500 text-xs dark:text-red-400">
                   {errors.lastname.message}
                 </p>
               )}
@@ -131,10 +134,12 @@ const Registration = () => {
 
             {/* Email */}
             <div>
-              <label className="block font-semibold mb-1 text-sm">Email</label>
+              <label className="block font-semibold mb-1 text-sm dark:text-white">
+                Email
+              </label>
               <input
                 type="email"
-                className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200"
+                className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200 bg-white dark:bg-gray-700 text-black dark:text-white"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -144,19 +149,21 @@ const Registration = () => {
                 })}
               />
               {errors.email && (
-                <p className="text-red-500 text-xs">{errors.email.message}</p>
+                <p className="text-red-500 text-xs dark:text-red-400">
+                  {errors.email.message}
+                </p>
               )}
             </div>
 
             {/* Password */}
             <div>
-              <label className="block font-semibold mb-1 text-sm">
+              <label className="block font-semibold mb-1 text-sm dark:text-white">
                 Password
               </label>
               <div className="relative">
                 <input
                   type={showPass ? "text" : "password"}
-                  className="w-full border border-gray-300 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200"
+                  className="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 outline-none focus:ring focus:ring-yellow-200 bg-white dark:bg-gray-700 text-black dark:text-white"
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -166,7 +173,7 @@ const Registration = () => {
                   })}
                 />
                 <span
-                  className="absolute right-3 top-2.5 cursor-pointer text-gray-500"
+                  className="absolute right-3 top-2.5 cursor-pointer text-gray-500 dark:text-gray-400"
                   onClick={() => setShowPass(!showPass)}
                 >
                   {showPass ? <FaEyeSlash /> : <FaEye />}
@@ -174,7 +181,7 @@ const Registration = () => {
               </div>
 
               {errors.password && (
-                <p className="text-red-500 text-xs">
+                <p className="text-red-500 text-xs dark:text-red-400">
                   {errors.password.message}
                 </p>
               )}
@@ -193,8 +200,13 @@ const Registration = () => {
 
               {loading ? "Signing up..." : "Sign Up"}
             </button>
-            <span className="text-gray-600">Already have an account ?</span>
-            <Link to="/login" className="text-blue-500 underline">
+            <span className="dark:text-gray-400">
+              Already have an account ?
+            </span>
+            <Link
+              to="/login"
+              className="text-blue-500 underline dark:text-blue-400"
+            >
               {" "}
               Sign in
             </Link>

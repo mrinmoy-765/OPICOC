@@ -70,6 +70,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
               <td>
                 <img
                   src={base?.productImage}
+                  loading="lazy"
                   alt={base?.title}
                   className="w-20 h-14 object-cover rounded"
                 />

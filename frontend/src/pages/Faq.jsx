@@ -108,7 +108,7 @@ const Faq = () => {
           placeholder="Search FAQs..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="input input-bordered w-full mb-6 text-gray-800"
+          className="input input-bordered w-full mb-6 text-gray-800 dark:text-white"
         />
 
         {filteredFaqs.map((faq, index) => (

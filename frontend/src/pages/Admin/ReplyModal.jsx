@@ -53,7 +53,7 @@ const ReplyModal = ({ isOpen, onClose, email }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
       <div className="bg-white rounded-xl w-full max-w-lg p-6 relative">
         {/* Header */}
-        <h2 className="text-2xl font-semibold mb-4">
+        <h2 className="text-2xl font-semibold mb-4 text-gray-500">
           Reply to <span className="text-blue-600 font-medium">{email}</span>
         </h2>
 
@@ -61,7 +61,7 @@ const ReplyModal = ({ isOpen, onClose, email }) => {
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Subject */}
           <div>
-            <label className="label font-semibold">Subject</label>
+            <label className="label font-semibold text-gray-500">Subject</label>
             <input
               type="text"
               className="input input-bordered w-full"
@@ -73,7 +73,7 @@ const ReplyModal = ({ isOpen, onClose, email }) => {
 
           {/* Message */}
           <div>
-            <label className="label font-semibold">Message</label>
+            <label className="label font-semibold text-gray-500">Message</label>
             <textarea
               rows="6"
               className="textarea textarea-bordered w-full"
@@ -84,11 +84,11 @@ const ReplyModal = ({ isOpen, onClose, email }) => {
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-3 pt-4">
+          <div className="flex justify-end gap-3 pt-4 ">
             <button
               type="button"
               onClick={onClose}
-              className="btn btn-outline"
+              className="btn btn-outline bg-red-500"
               disabled={loading}
             >
               Cancel

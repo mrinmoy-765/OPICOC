@@ -20,9 +20,14 @@ const VideoSection = () => {
       <div className="flex flex-col justify-center items-center w-full lg:w-1/2 md:w-1/2 p-6">
         <div className="w-full flex items-center justify-center py-7">
           <button className="group w-full lg:w-5/6 md:w-5/6 bg-[#D91A1A] py-3 text-white font-semibold rounded-lg hover:bg-red-500 transition">
-            <span className="inline-block group-hover:translate-x-2 transition duration-300 ease-in-out cursor-pointer">
+            <a
+              href="https://www.youtube.com/@Opi333coc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block group-hover:translate-x-2 transition duration-300 ease-in-out cursor-pointer"
+            >
               Subscribe
-            </span>
+            </a>
           </button>
         </div>
 

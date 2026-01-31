@@ -50,7 +50,7 @@ const CreateAboutForm = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <div className="max-w-3xl mx-auto  rounded-lg shadow-md p-6">
       <h1 className="text-2xl font-clash mb-6">Create About Section</h1>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">

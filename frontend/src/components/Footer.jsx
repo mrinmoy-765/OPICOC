@@ -1,10 +1,8 @@
 import React from "react";
-import FooterImg from "../assets/footer_img_1.png";
 import Skeleton from "../assets/Footer_img_2.png";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import logo from "../assets/Legend.png";
 import { AiOutlineYoutube, AiFillInstagram } from "react-icons/ai";
 import { PiDiscordLogoLight } from "react-icons/pi";
 import { BsTwitterX } from "react-icons/bs";
@@ -19,7 +17,7 @@ const Footer = () => {
   return (
     <div
       className="relative  w-full h-auto bg-cover bg-center"
-      style={{ backgroundImage: `url(${FooterImg})` }}
+      style={{ backgroundImage: `url("https://iili.io/fsRZfkB.jpg")` }}
     >
       {/* <div className="absolute inset-0 bg-black/10"></div> */}
       <footer className="footer sm:footer-horizontal bg-transparent text-white p-10">
@@ -29,6 +27,7 @@ const Footer = () => {
           </h1>
           <img
             src={Skeleton}
+            loading="lazy"
             alt=""
             className="h-[164px] lg:ml-15 ml-0 my-3.5"
           />
@@ -83,7 +82,8 @@ const Footer = () => {
             Home
           </Link>
           <img
-            src={logo}
+            src="https://iili.io/f6mQgA7.png"
+            loading="lazy"
             alt=""
             className="w-[70px] h-[70px] lg:mt-18 md:mt-12 mt:7 hidden lg:block md:block"
           />

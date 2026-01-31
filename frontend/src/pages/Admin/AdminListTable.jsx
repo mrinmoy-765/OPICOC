@@ -9,7 +9,7 @@ const AdminListTable = ({ users }) => {
   // Slice bookings for current page
   const paginatedUsers = users.slice(
     (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+    currentPage * itemsPerPage,
   );
 
   const getPages = () => {
@@ -26,7 +26,7 @@ const AdminListTable = ({ users }) => {
           totalPages - 3,
           totalPages - 2,
           totalPages - 1,
-          totalPages
+          totalPages,
         );
       } else {
         pages.push(
@@ -36,7 +36,7 @@ const AdminListTable = ({ users }) => {
           currentPage,
           currentPage + 1,
           "...",
-          totalPages
+          totalPages,
         );
       }
     }
@@ -60,6 +60,7 @@ const AdminListTable = ({ users }) => {
               <td className="p-2">
                 <img
                   src={user?.image || defaultDP}
+                  loading="lazy"
                   alt=""
                   className="w-20 h-14 object-cover rounded"
                 />
