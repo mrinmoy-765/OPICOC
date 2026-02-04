@@ -27,6 +27,7 @@ import About from "../pages/About";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import NotFound from "../components/NotFound";
+import BasesByTownHall from "../pages/BasesByTownHall";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,11 @@ const router = createBrowserRouter([
         path: "/all-products",
         element: <AllProducts></AllProducts>,
       },
+      {
+        path: "/bases/th/:th",
+        element: <BasesByTownHall />,
+      },
+
       {
         path: "/cart",
         element: <Cart></Cart>,

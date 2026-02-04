@@ -68,7 +68,13 @@ const Footer = () => {
         <nav>
           <h6 className="text-white font-bold text-3xl mb-2">Overview</h6>
           <a className="link link-hover">Pricing</a>
-          <Link to="/FAQ's" className="link link-hover">
+          <Link
+            to="/FAQ's"
+            className="link link-hover"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             FAQs
           </Link>
           <a className="link link-hover">Help</a>

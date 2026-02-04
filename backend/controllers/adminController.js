@@ -144,6 +144,27 @@ export const getBases = async (req, res) => {
   }
 };
 
+//get sorted products
+export const getSortedBases = async (req, res) => {
+  try {
+    const { townHall } = req.query; // "18"
+
+    const bases = await productModel.find({
+      townHall: `Town Hall ${townHall}`,
+    });
+    res.json({
+      success: true,
+      message: "Bases Fetched Successfully",
+      bases,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      messsage: error.message,
+    });
+  }
+};
+
 //get product by id
 export const getSpecificBase = async (req, res) => {
   try {

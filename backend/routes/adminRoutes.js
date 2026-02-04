@@ -14,6 +14,7 @@ import {
   updateAbout,
   getSpecificAbout,
   deleteAbout,
+  getSortedBases,
 } from "../controllers/adminController.js";
 import adminAuth from "../middleware/adminAuth.js";
 
@@ -46,4 +47,6 @@ adminRouter.get("/get-about", getAbout);
 adminRouter.put("/update-about/:id", adminAuth, updateAbout);
 adminRouter.get("/get-about/:id", adminAuth, getSpecificAbout);
 adminRouter.delete("/delete-about/:id", adminAuth, deleteAbout);
+//sorted bases by category
+adminRouter.get("/bases", getSortedBases);
 export default adminRouter;

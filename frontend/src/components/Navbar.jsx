@@ -62,7 +62,7 @@ const Navbar = () => {
 
       {/* --- ROW 2: Search Bar --- */}
       <div className="w-full px-2 mt-3 lg:mt-0 lg:w-auto lg:px-0 lg:ml-5 flex justify-center">
-        <div className="relative w-full lg:w-80">
+        <div className="relative w-full lg:w-80 mr-3">
           <input
             type="text"
             placeholder="Search here"
@@ -90,17 +90,18 @@ const Navbar = () => {
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               <li>
-                <a>TH 18 Pro Pack</a>
+                <Link to="/bases/th/18">TH 18 Pro Pack</Link>
               </li>
               <li>
-                <a>TH 17 Pro Pack</a>
+                <Link to="/bases/th/17">TH 17 Pro Pack</Link>
               </li>
               <li>
-                <a>TH 16 Pro Pack</a>
+                <Link to="/bases/th/16">TH 16 Pro Pack</Link>
               </li>
               <li>
-                <a>TH 15 Pro Pack</a>
+                <Link to="/bases/th/15">TH 15 Pro Pack</Link>
               </li>
+
               <li>
                 <a>Custom Base</a>
               </li>
