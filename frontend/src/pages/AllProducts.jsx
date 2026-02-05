@@ -54,6 +54,10 @@ const AllProducts = () => {
     fetchTownHalls();
   }, [AxiosPublic]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
   // Search filtering
   const filteredBases = bases.filter(
     (base) =>
@@ -81,8 +85,8 @@ const AllProducts = () => {
   const townHallSuggestions = useMemo(() => {
     if (!searchTerm) return [];
 
-    console.log("townHall data:", townHall);
-    console.log("searchTerm:", searchTerm);
+    // console.log("townHall data:", townHall);
+    // console.log("searchTerm:", searchTerm);
 
     const suggestions = townHall
       .flatMap((item) =>

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../AuthProvider/AuthContext";
 import { useCart } from "../context/CartContext";
 import Spinner from "./Spinner";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -90,21 +91,79 @@ const Navbar = () => {
               className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
             >
               <li>
-                <Link to="/bases/th/18">TH 18 Pro Pack</Link>
+                <Link
+                  to="/bases/th/18"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  TH 18 Pro Pack
+                </Link>
               </li>
               <li>
-                <Link to="/bases/th/17">TH 17 Pro Pack</Link>
+                <Link
+                  to="/bases/th/17"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  TH 17 Pro Pack
+                </Link>
               </li>
               <li>
-                <Link to="/bases/th/16">TH 16 Pro Pack</Link>
+                <Link
+                  to="/bases/th/16"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  TH 16 Pro Pack
+                </Link>
               </li>
               <li>
-                <Link to="/bases/th/15">TH 15 Pro Pack</Link>
+                <Link
+                  to="/bases/th/15"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                >
+                  TH 15 Pro Pack
+                </Link>
               </li>
-
-              <li>
-                <a>Custom Base</a>
-              </li>
+              {isAuthenticated && user ? (
+                <li>
+                  <Link
+                    to="custom-base"
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                  >
+                    Custom Base
+                  </Link>
+                </li>
+              ) : (
+                <li>
+                  <div
+                    to=""
+                    onClick={() => {
+                      Swal.fire({
+                        title: "Log in first",
+                        text: "Please log in to request a base",
+                        icon: "warning",
+                        customClass: {
+                          popup: "my-swal-popup",
+                          title: "my-swal-title",
+                          htmlContainer: "my-swal-text",
+                          confirmButton: "my-swal-button",
+                        },
+                      });
+                      return;
+                    }}
+                  >
+                    Custom Base
+                  </div>
+                </li>
+              )}
             </ul>
           </div>
 

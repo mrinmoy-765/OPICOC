@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import defaultDP from "../../assets/profile-icon.png";
 
 const UserListTable = ({ users }) => {
@@ -47,6 +47,11 @@ const UserListTable = ({ users }) => {
     }
     return pages;
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
   return (
     <div className="overflow-x-auto md:px-30">
       <table className="table table-zebra">

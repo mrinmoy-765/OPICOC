@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const BaseListTable = ({ bases = [], onDelete }) => {
@@ -47,6 +47,10 @@ const BaseListTable = ({ bases = [], onDelete }) => {
     }
     return pages;
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   return (
     <div className="overflow-x-auto">
@@ -139,8 +143,8 @@ const BaseListTable = ({ bases = [], onDelete }) => {
           <div className="join">
             <button
               className="btn btn-sm join-item"
-              onClick={() => setCurrentPage((p) => p - 1)}
-              disabled={safeCurrentPage === 1}
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
             >
               Prev
             </button>
@@ -160,7 +164,7 @@ const BaseListTable = ({ bases = [], onDelete }) => {
 
             <button
               className="btn btn-sm join-item"
-              onClick={() => setCurrentPage((p) => p + 1)}
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
               disabled={currentPage === totalPages}
             >
               Next

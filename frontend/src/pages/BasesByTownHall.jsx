@@ -32,6 +32,10 @@ const BasesByTownHall = () => {
     fetchBases();
   }, [th, AxiosPublic]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
   const paginatedBases = bases.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,

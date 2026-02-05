@@ -28,6 +28,8 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import NotFound from "../components/NotFound";
 import BasesByTownHall from "../pages/BasesByTownHall";
+import CustomBaseForm from "../pages/CustomBaseForm";
+import BaseRequests from "../pages/Admin/BaseRequests";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +69,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <GetAllAdmin></GetAllAdmin>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "get-requests",
+        element: (
+          <AdminRoute>
+            <BaseRequests></BaseRequests>
           </AdminRoute>
         ),
       },
@@ -122,6 +132,14 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <ContactUs></ContactUs>,
+      },
+      {
+        path: "/custom-base",
+        element: (
+          <PrivateRoute>
+            <CustomBaseForm></CustomBaseForm>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/contact-messages",
