@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,11 +13,16 @@ const ReviewSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   const { isAuthenticated, user } = useAuth();
   const AxiosPublic = useAxiosPublic();
 
-  React.useEffect(() => {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const fetchReviews = async () => {
       try {
         const res = await AxiosPublic.get("/review/get-reviews");
@@ -40,88 +45,75 @@ const ReviewSection = () => {
         title: "Log in first",
         text: "Please log in to write a review",
         icon: "warning",
-        customClass: {
-          popup: "my-swal-popup",
-          title: "my-swal-title",
-          htmlContainer: "my-swal-text",
-          confirmButton: "my-swal-button",
-        },
       });
-      return;
     }
   };
 
-  // responsive slider settings
+  // MOBILE-FIRST SETTINGS
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // default
-    slidesToScroll: 1,
     arrows: true,
+    mobileFirst: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     responsive: [
-      // below 1024px -> 2 slides
       {
-        breakpoint: 1024,
+        breakpoint: 640,
         settings: {
           slidesToShow: 2,
         },
       },
-      // below 640px -> 1 slide
       {
-        breakpoint: 640,
+        breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 3,
         },
       },
     ],
   };
 
   if (loading) {
-    <Spinner></Spinner>;
+    return <Spinner />;
   }
+
+  if (!mounted) return null;
+
   return (
     <div className="bg-[#1d1d1d] py-10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <h1 className="text-white font-clash text-4xl mb-8">Reviews</h1>
 
-        {/* slider wrapper ensures responsive width */}
-        <div className="w-full">
+        <div className="w-full overflow-hidden">
           <Slider {...settings}>
-            {reviews.map((d, index) => (
-              <div key={index} className="p-3">
+            {reviews.map((d) => (
+              <div key={d._id} className="p-3">
                 <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                  {/* product image */}
                   {d.reviewImage && (
                     <img
                       src={d.reviewImage}
                       loading="lazy"
-                      alt="review product"
-                      className="w-full h-48 sm:h-56 md:h-48 lg:h-56 object-cover"
+                      alt="review"
+                      className="w-full h-48 object-cover"
                     />
                   )}
+
                   <div className="p-4">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h2 className="font-bold text-lg dark:text-black">
-                          {d.FirstName}
-                        </h2>
-                        <h2 className="font-bold text-lg dark:text-black">
-                          {d.LastName}
-                        </h2>
-                        <p className="text-gray-500 text-sm">
-                          {new Date(d.createdAt).toLocaleString("en-GB", {
-                            day: "2-digit",
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </p>
-                      </div>
-                    </div>
+                    <h2 className="font-bold text-lg text-black">
+                      {d.FirstName} {d.LastName}
+                    </h2>
+
+                    <p className="text-gray-500 text-sm">
+                      {new Date(d.createdAt).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </p>
 
                     <p className="mt-3 text-gray-700">{d.review}</p>
 
-                    {/* user info */}
                     <div className="flex items-center gap-3 mt-4">
                       <img
                         src={d?.userImage || defaultDP}
@@ -138,41 +130,34 @@ const ReviewSection = () => {
           </Slider>
         </div>
 
-        {/* write a review button */}
-
         <div className="w-full flex items-center justify-center py-7">
           <button
             onClick={handleReview}
             className="group w-full sm:w-1/3 md:w-1/4 lg:w-1/6 bg-white py-3 text-black font-semibold rounded-lg hover:bg-gray-200 transition"
           >
-            <span className="inline-block group-hover:translate-x-2 transition duration-300 ease-in-out cursor-pointer">
+            <span className="inline-block group-hover:translate-x-2 transition duration-300">
               Write a Review
             </span>
           </button>
         </div>
       </div>
 
-      {/* Modal (renders WriteReview inside) */}
       {isModalOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
           onClick={() => setIsModalOpen(false)}
         >
-          {/* stop propagation so clicks inside modal don't close it */}
           <div
             className="bg-white rounded-lg max-w-3xl w-full mx-4 sm:mx-6 p-6 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* close button */}
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-3 right-3 text-gray-600 hover:text-gray-900"
-              aria-label="Close"
             >
               ✕
             </button>
 
-            {/* Your WriteReview component will receive a prop to close the modal if needed */}
             <WriteReview onClose={() => setIsModalOpen(false)} />
           </div>
         </div>

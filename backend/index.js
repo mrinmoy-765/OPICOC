@@ -19,6 +19,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173", // your frontend URL
+    // origin: "https://superb-marshmallow-f18f00.netlify.app", // your frontend URL
     credentials: true,
   }),
 );
