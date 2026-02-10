@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import defaultDP from "../../assets/profile-icon.png";
 
-const AdminListTable = ({ users }) => {
+const NewsLetterTable = ({ emails }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(users.length / itemsPerPage);
+  const totalPages = Math.ceil(emails.length / itemsPerPage);
 
-  const paginatedUsers = users.slice(
+  const paginatedEmails = emails.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage,
   );
@@ -46,26 +45,13 @@ const AdminListTable = ({ users }) => {
       <table className="table table-zebra">
         <thead>
           <tr>
-            <th></th>
-            <th className="text-center">First Name</th>
-            <th className="text-center">Last Name</th>
             <th className="text-center">Email</th>
-            <th className="text-center">Joined</th>
+            <th className="text-center">Date</th>
           </tr>
         </thead>
         <tbody className="text-center">
-          {paginatedUsers.map((user) => (
+          {paginatedEmails.map((user) => (
             <tr key={user._id}>
-              <td className="p-2">
-                <img
-                  src={user?.image || defaultDP}
-                  loading="lazy"
-                  alt=""
-                  className="w-20 h-14 object-cover rounded"
-                />
-              </td>
-              <td>{user.FirstName}</td>
-              <td>{user.LastName}</td>
               <td>{user.email}</td>
               <td>
                 {new Date(user.createdAt).toLocaleString("en-GB", {
@@ -119,4 +105,4 @@ const AdminListTable = ({ users }) => {
   );
 };
 
-export default AdminListTable;
+export default NewsLetterTable;

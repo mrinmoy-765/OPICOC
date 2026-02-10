@@ -14,12 +14,28 @@ const ReviewSection = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [slidesToShow, setSlidesToShow] = useState(3);
 
   const { isAuthenticated, user } = useAuth();
   const AxiosPublic = useAxiosPublic();
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // calculate slidesToShow based on actual window width to avoid breakpoint
+  // inconsistencies on real devices/browsers
+  useEffect(() => {
+    const calculate = () => {
+      const w = window.innerWidth;
+      if (w >= 1024) setSlidesToShow(3);
+      else if (w >= 768) setSlidesToShow(2);
+      else setSlidesToShow(1);
+    };
+
+    calculate();
+    window.addEventListener("resize", calculate);
+    return () => window.removeEventListener("resize", calculate);
   }, []);
 
   useEffect(() => {
@@ -49,34 +65,13 @@ const ReviewSection = () => {
     }
   };
 
-  // RESPONSIVE SETTINGS
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     arrows: true,
-    slidesToShow: 3,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1.5,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
   };
 
   if (loading) {

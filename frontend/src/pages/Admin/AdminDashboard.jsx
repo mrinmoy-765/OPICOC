@@ -69,6 +69,9 @@ const AdminDashboard = () => {
         <Link to="/get-requests" className="btn btn-outline btn-warning">
           Base Requests
         </Link>
+        <Link to="/getNewsLetter" className="btn btn-outline btn-warning">
+          News Letter
+        </Link>
         <Link to="/contact-messages" className="btn btn-outline btn-warning">
           Inbox{" "}
           <div className="badge badge-sm badge-warning">

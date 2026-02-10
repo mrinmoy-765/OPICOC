@@ -30,6 +30,7 @@ import NotFound from "../components/NotFound";
 import BasesByTownHall from "../pages/BasesByTownHall";
 import CustomBaseForm from "../pages/CustomBaseForm";
 import BaseRequests from "../pages/Admin/BaseRequests";
+import NewsLetter from "../pages/Admin/NewsLetter";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <GetAllAdmin></GetAllAdmin>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "getNewsLetter",
+        element: (
+          <AdminRoute>
+            <NewsLetter></NewsLetter>
           </AdminRoute>
         ),
       },

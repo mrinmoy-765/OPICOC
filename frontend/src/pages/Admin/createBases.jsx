@@ -5,6 +5,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../../AuthProvider/AuthContext";
+import { Link } from "react-router-dom";
 
 const CreateBases = () => {
   const [loading, setLoading] = useState(false);
@@ -68,6 +69,14 @@ const CreateBases = () => {
 
   return (
     <div className="max-w-4xl mx-auto  p-8 rounded-lg shadow">
+      <div className="flex justify-end text-white">
+        <Link
+          to="/adminDashboard"
+          className=" bg-green-500 p-2 rounded hover:bg-green-600"
+        >
+          Go back
+        </Link>
+      </div>
       <h1 className="text-3xl font-bold mb-6">Create Product</h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

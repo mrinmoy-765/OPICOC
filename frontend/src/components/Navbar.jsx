@@ -14,15 +14,13 @@ import Swal from "sweetalert2";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [profileHovered, setProfileHovered] = useState(false);
 
   const { isAuthenticated, isLoading, user, logout } = useAuth();
   const { cartItems, totalPrice } = useCart();
 
-  // console.log("user", user);
-
-  //if (isLoading) return null;
   if (isLoading) {
-    return <Spinner></Spinner>;
+    return <Spinner />;
   }
 
   return (
@@ -239,31 +237,36 @@ const Navbar = () => {
           {/* user image */}
 
           {isAuthenticated && user?.image && (
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
+            <div
+              className="relative"
+              onMouseEnter={() => setProfileHovered(true)}
+              onMouseLeave={() => setProfileHovered(false)}
+            >
+              <Link
+                to="/profile"
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
                 className="btn btn-ghost btn-circle avatar"
               >
                 <div className="w-10 rounded-full">
                   <img
-                    alt="Tailwind CSS Navbar component"
+                    alt="User profile"
                     loading="lazy"
                     src={user?.image || defaultUser}
                   />
                 </div>
-              </div>
-              <ul
-                tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <span>{user.FirstName}</span>
-                </li>
-                <li>
-                  <span>{user.email}</span>
-                </li>
-              </ul>
+              </Link>
+              {profileHovered && (
+                <ul className="absolute right-0 mt-2 w-62 bg-base-100 rounded-box shadow p-2 z-50">
+                  <li className="p-2">
+                    <span className="font-semibold">{user.FirstName}</span>
+                  </li>
+                  <li className="p-2 pt-0">
+                    <span className="text-sm text-gray-600">{user.email}</span>
+                  </li>
+                </ul>
+              )}
             </div>
           )}
 

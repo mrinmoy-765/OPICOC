@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Skeleton from "../assets/Footer_img_2.png";
 import { AiOutlineMail } from "react-icons/ai";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -9,11 +9,37 @@ import { BsTwitterX } from "react-icons/bs";
 import { IoLogoFacebook } from "react-icons/io5";
 import { FiTwitch } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import { toast } from "react-toastify";
 
 const iconStyle =
   "lg:w-10 lg:h-10 md:w-8 md:h-8 w-7 h-7  lg:p-1.5 md:pd-2 p-1 text-white lg:border-2 border border-white rounded-full hover:bg-white hover:text-black transition";
 
 const Footer = () => {
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const AxiosPublic = useAxiosPublic();
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+
+    const email = (newsletterEmail || "").trim();
+    if (!email) return toast.error("Please enter an email.");
+
+    try {
+      const res = await AxiosPublic.post(`/newsletter/subscribe`, { email });
+      const data = res.data;
+      if (res.status >= 400) {
+        toast.error(data?.message);
+      } else {
+        toast.success(data?.message);
+        setNewsletterEmail("");
+      }
+    } catch (err) {
+      console.error(err);
+      const message =
+        err?.response?.data?.message || err.message || "Network error";
+      toast.error(message);
+    }
+  };
   return (
     <div
       className="relative  w-full h-auto bg-cover bg-center"
@@ -37,18 +63,21 @@ const Footer = () => {
           </div>
         </nav>
         <nav>
-          <form>
+          <form onSubmit={handleSubscribe}>
             <h6 className="text-white font-bold text-3xl mb-2">Newsletter</h6>
             <fieldset className="w-80 md:w-64 flex items-center gap-3 border-b-2 border-b-white py-2">
               <MdEmail className="text-2xl text-white" />
 
               <input
-                type="text"
+                type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
                 placeholder="username@site.com"
                 className="flex-1 bg-transparent outline-none text-white placeholder-gray-400"
+                aria-label="newsletter-email"
               />
 
-              <button>
+              <button type="submit" aria-label="subscribe-button">
                 <FaLongArrowAltRight className="text-white text-2xl" />
               </button>
             </fieldset>

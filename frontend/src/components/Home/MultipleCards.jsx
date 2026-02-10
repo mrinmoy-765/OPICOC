@@ -29,7 +29,7 @@ const MultipleCards = () => {
   }, [AxiosPublic]);
 
   if (loading) {
-    <Spinner></Spinner>;
+    <Spinner />;
   }
   return (
     <div className="bg-[#1d1d1d] md:px-10 lg:px-12 px-5">

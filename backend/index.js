@@ -9,6 +9,7 @@ import adminRouter from "./routes/adminRoutes.js";
 import reviewRouter from "./routes/reviewRoutes.js";
 import contactRouter from "./routes/contactRoutes.js";
 import requestRouter from "./routes/requestRoutes.js";
+import newsletterRouter from "./routes/newsletterRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -19,7 +20,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "http://localhost:5173", // your frontend URL
-    // origin: "https://superb-marshmallow-f18f00.netlify.app", // your frontend URL
+    //origin: "https://superb-marshmallow-f18f00.netlify.app", // your frontend URL
     credentials: true,
   }),
 );
@@ -32,4 +33,5 @@ app.use("/api/admin", adminRouter);
 app.use("/api/review", reviewRouter);
 app.use("/api/request", requestRouter);
 app.use("/api/contact", contactRouter);
+app.use("/api/newsletter", newsletterRouter);
 app.listen(port, () => console.log(`Server started on PORT:${port}`));
