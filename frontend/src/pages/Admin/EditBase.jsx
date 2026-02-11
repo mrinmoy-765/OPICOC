@@ -395,7 +395,7 @@ const EditBase = () => {
         </button>
       </form>
       {/* Product Info section */}
-      <div className="card w-full bg-gray-200 card-xs shadow-sm mt-10 py-7 px-10">
+      <div className="card w-full bg-gray-200 card-xs shadow-sm mt-10 py-7 px-10 dark:bg-gray-900">
         <div className="card-body">
           <h2 className="text-lg text-blue-700 font-bold">Additional Info:</h2>
           <div className="flex justify-center items-center">

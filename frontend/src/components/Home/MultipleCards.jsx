@@ -3,6 +3,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import Spinner from "../Spinner";
+import { FaOpencart } from "react-icons/fa6";
 
 const MultipleCards = () => {
   const [bases, setBases] = useState([]);
@@ -85,9 +86,10 @@ const MultipleCards = () => {
                       productImage: base.productImage,
                     })
                   }
-                  className="group w-full md:w-2/5 bg-[#F5B400] py-3 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+                  className="group w-full md:w-3/5 bg-[#F5B400] py-3 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
                 >
-                  <span className="inline-block group-hover:animate-bounce">
+                  <span className="flex justify-center items-center gap-2 group-hover:animate-bounce">
+                    <FaOpencart className="text-2xl" />
                     Add To Cart
                   </span>
                 </button>

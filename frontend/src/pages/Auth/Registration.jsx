@@ -50,7 +50,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="px-6 py-4 max-w-5xl mx-auto bg-white dark:bg-gray-900 min-h-screen">
+    <div className="px-6 py-4 max-w-5xl mx-auto bg-white dark:bg-[#1D232A] min-h-screen">
       {/* Logo */}
       <div className="flex justify-center mb-4">
         <img src={logo} loading="lazy" alt="logo" className="w-72 h-auto" />

@@ -11,7 +11,7 @@ const BaseRequests = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 9;
   const safeCurrentPage = Math.min(
     currentPage,
     Math.max(1, Math.ceil(requests.length / itemsPerPage)),

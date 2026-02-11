@@ -226,7 +226,13 @@ const Navbar = () => {
                 </span>
                 <span className="text-info">Subtotal: ${totalPrice}</span>
                 <div className="card-actions">
-                  <Link to="/cart" className="bg-amber-300 btn btn-block">
+                  <Link
+                    to="/cart"
+                    className="bg-amber-300 btn btn-block"
+                    onClick={() => {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                  >
                     View Cart
                   </Link>
                 </div>
@@ -263,7 +269,9 @@ const Navbar = () => {
                     <span className="font-semibold">{user.FirstName}</span>
                   </li>
                   <li className="p-2 pt-0">
-                    <span className="text-sm text-gray-600">{user.email}</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {user.email}
+                    </span>
                   </li>
                 </ul>
               )}

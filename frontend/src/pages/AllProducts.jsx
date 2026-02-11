@@ -4,6 +4,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useCart } from "../context/CartContext";
 import { GiPowerLightning } from "react-icons/gi";
 import { useRef } from "react";
+import { FaOpencart } from "react-icons/fa6";
 import Spinner from "../components/Spinner";
 
 const AllProducts = () => {
@@ -84,9 +85,6 @@ const AllProducts = () => {
   // Filter townhall suggestions based on searchTerm
   const townHallSuggestions = useMemo(() => {
     if (!searchTerm) return [];
-
-    // console.log("townHall data:", townHall);
-    // console.log("searchTerm:", searchTerm);
 
     const suggestions = townHall
       .flatMap((item) =>
@@ -170,12 +168,12 @@ const AllProducts = () => {
           {showSuggestions && townHallSuggestions.length > 0 && (
             <ul
               ref={dropdownRef}
-              className="absolute z-50 mt-1  rounded-lg border border-gray-200 bg-white shadow-lg max-h-48 overflow-y-auto"
+              className="absolute z-50 mt-1  rounded-lg border border-gray-200 bg-white dark:bg-black  shadow-lg max-h-48 overflow-y-auto"
             >
               {townHallSuggestions.map((suggestion, idx) => (
                 <li
                   key={idx}
-                  className="px-4 py-2 cursor-pointer hover:bg-amber-100 transition text-sm"
+                  className="px-4 py-2 cursor-pointer hover:bg-amber-100 dark:hover:bg-gray-500 transition text-sm"
                   onClick={() => {
                     setSearchTerm(suggestion);
                     setShowSuggestions(false);
@@ -268,7 +266,8 @@ const AllProducts = () => {
                     }
                     className="group w-full md:w-2/5 bg-[#F5B400] py-3 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
                   >
-                    <span className="inline-block group-hover:animate-bounce">
+                    <span className="group-hover:animate-bounce flex justify-center items-center gap-2">
+                      <FaOpencart className="text-2xl" />
                       Add To Cart
                     </span>
                   </button>
