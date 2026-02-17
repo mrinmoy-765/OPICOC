@@ -16,6 +16,7 @@ const BasesByTownHall = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
   const totalPages = Math.ceil(bases.length / itemsPerPage);
+  console.log(location.pathname);
 
   useEffect(() => {
     const fetchBases = async () => {
@@ -79,6 +80,10 @@ const BasesByTownHall = () => {
 
   return (
     <div className="bg-[#1d1d1d] pt-2 pb-10 px-5">
+      <h1 className="text-2xl text-white font-clash font-bold my-5">
+        Bases for Town Hall {th}
+      </h1>
+
       {/* Right: Search and Sort */}
       {/* <div className="flex flex-col md:flex-row items-center gap-4 w-full md:justify-end mb-3">
             

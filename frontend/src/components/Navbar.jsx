@@ -59,18 +59,6 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* --- ROW 2: Search Bar --- */}
-      <div className="w-full px-2 mt-3 lg:mt-0 lg:w-auto lg:px-0 lg:ml-5 flex justify-center">
-        <div className="relative w-full lg:w-80 mr-3">
-          <input
-            type="text"
-            placeholder="Search here"
-            className="input input-bordered rounded-xl pr-10 w-full"
-          />
-          <IoSearchOutline className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-xl" />
-        </div>
-      </div>
-
       {/* --- ROW 3: Shop, Dollar, Cart, Login --- */}
       <div className="w-full flex justify-center items-center mt-3 px-2 lg:mt-0 lg:w-auto lg:justify-end lg:px-0 lg:flex-none">
         <div className="flex items-center">

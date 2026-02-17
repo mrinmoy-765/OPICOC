@@ -9,7 +9,13 @@ const TownHalls = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {/* th 1 */}
-        <div className="card bg-[#1d1d1d] w-auto">
+        <Link
+          to="/bases/th/18"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="card bg-[#1d1d1d] w-auto"
+        >
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
@@ -33,9 +39,15 @@ const TownHalls = () => {
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 18</h2>
           </div>
-        </div>
+        </Link>
         {/* th 2 */}
-        <div className="card bg-[#1d1d1d] w-auto">
+        <Link
+          to="/bases/th/17"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="card bg-[#1d1d1d] w-auto"
+        >
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
@@ -59,9 +71,15 @@ const TownHalls = () => {
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 17</h2>
           </div>
-        </div>
+        </Link>
         {/* th 3 */}
-        <div className="card bg-[#1d1d1d] w-auto">
+        <Link
+          to="/bases/th/16"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="card bg-[#1d1d1d] w-auto"
+        >
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
@@ -86,9 +104,15 @@ const TownHalls = () => {
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 16</h2>
           </div>
-        </div>
+        </Link>
         {/* th 4 */}
-        <div className="card bg-[#1d1d1d] w-auto">
+        <Link
+          to="/bases/th/15"
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="card bg-[#1d1d1d] w-auto"
+        >
           <div className="hover-3d">
             {/* content */}
             <figure className="max-w-100 rounded-2xl">
@@ -112,7 +136,7 @@ const TownHalls = () => {
           <div className="card-body items-center text-center">
             <h2 className="card-title font-clash text-white">Town Hall 15</h2>
           </div>
-        </div>
+        </Link>
       </div>
       {/* show all button */}
       <div className="w-full flex items-center justify-center lg:pt-7 lg:pb-14 pb-9">

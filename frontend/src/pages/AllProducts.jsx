@@ -6,6 +6,7 @@ import { GiPowerLightning } from "react-icons/gi";
 import { useRef } from "react";
 import { FaOpencart } from "react-icons/fa6";
 import Spinner from "../components/Spinner";
+import { GoSearch } from "react-icons/go";
 
 const AllProducts = () => {
   const AxiosPublic = useAxiosPublic();
@@ -152,19 +153,24 @@ const AllProducts = () => {
       {/* Right: Search and Sort */}
       <div className="flex flex-col md:flex-row items-center gap-4 w-full md:justify-end mb-3">
         <div className="lg:w-1/4 md:w-screen w-full">
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="Search bases"
-            value={searchTerm}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-              setShowSuggestions(true);
-            }}
-            onFocus={() => setShowSuggestions(true)}
-            className="input input-bordered"
-            autoComplete="off"
-          />
+          <div className="flex items-center relative w-full">
+            <input
+              ref={inputRef}
+              type="text"
+              placeholder="Search bases"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setShowSuggestions(true);
+              }}
+              onFocus={() => setShowSuggestions(true)}
+              className="input input-bordered w-full pr-12"
+              autoComplete="off"
+            />
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center">
+              <GoSearch className="text-xl md:text-2xl text-black" />
+            </span>
+          </div>
           {showSuggestions && townHallSuggestions.length > 0 && (
             <ul
               ref={dropdownRef}
